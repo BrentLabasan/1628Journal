@@ -12,7 +12,7 @@
 
 <style>
 	section {
-		display: grid;
+		display: inline-grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	}
 </style>
