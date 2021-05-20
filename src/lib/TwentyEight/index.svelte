@@ -10,28 +10,43 @@
 	// import "firebase/auth";
 	import 'firebase/firestore';
 
-  const config = {
-  apiKey: "AIzaSyCo1_tSUtuq8bmuuGJ01AdvpkdUB4twU-Y",
-  authDomain: "dev-2d025.firebaseapp.com",
-  projectId: "dev-2d025",
-  storageBucket: "dev-2d025.appspot.com",
-  messagingSenderId: "155757852699",
-  appId: "1:155757852699:web:889c9bdf1423f1c082e0be",
-  measurementId: "G-209RZ60MX4"
-};
+	const config = {
+		apiKey: 'AIzaSyCo1_tSUtuq8bmuuGJ01AdvpkdUB4twU-Y',
+		authDomain: 'dev-2d025.firebaseapp.com',
+		projectId: 'dev-2d025',
+		storageBucket: 'dev-2d025.appspot.com',
+		messagingSenderId: '155757852699',
+		appId: '1:155757852699:web:889c9bdf1423f1c082e0be',
+		measurementId: 'G-209RZ60MX4'
+	};
 
 	// Initialize Firebase
-  !firebase.apps.length ? firebase.initializeApp(config) : firebase.app()
+	!firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
-  const timesToBeRendered = 4;
-  
-  function onClick() {
-		alert('index onClick()')
+	var db = firebase.firestore();
+
+	const timesToBeRendered = 4;
+
+	function onClick() {
+		// alert('index onClick()')
+
+		db.collection('users')
+			.add({
+				first: 'Ada',
+				last: 'Lovelace',
+				born: 1815
+			})
+			.then((docRef) => {
+				console.log('Document written with ID: ', docRef.id);
+			})
+			.catch((error) => {
+				console.error('Error adding document: ', error);
+			});
 	}
 </script>
 
 <section>
-  <button on:click={onClick}>+ TWENTYEIGHT</button>
+	<button on:click={onClick}>+ TWENTYEIGHT</button>
 	<!-- {DateTime.now().toISODate()} -->
 	<br />
 	<br />
