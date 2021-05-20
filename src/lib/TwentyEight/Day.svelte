@@ -110,7 +110,8 @@ console.log(newObject);
 
     #container_timeCompleted {
       /* debug */
-      border: 1px solid orange;
+      /* border: 1px solid orange; */
+
       align-self: center;
 
     }
@@ -129,8 +130,10 @@ console.log(newObject);
       /* display: inline-block; */
 
       /* position: absolute; */
+
       /* debug */
-      border: 1px solid yellow;
+      /* border: 1px solid yellow; */
+
       align-self: center;
 
       /* doesn't work */
