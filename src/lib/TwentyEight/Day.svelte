@@ -5,12 +5,17 @@
 
     export let dateTime, weekIndex, dayIndex;
     console.log(dateTime, weekIndex, dayIndex);
+
+    function onClick() {
+		// alert('clicked')
+	}
 </script>
 
-<section>
+<section on:click={onClick}>
     <!-- { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() }  -->
     { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day } 
 </section>
+
 <style>
     section {
         display: inline-block;
@@ -24,6 +29,14 @@
 
         width: 80px;
         height: 80px;
+
+        cursor: pointer;
+
+        padding: 10px 0;
+    }
+
+    section:hover {
+        background-color: grey;
     }
 
 
