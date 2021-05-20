@@ -1,5 +1,5 @@
 <script>
-	import Week from './Week.svelte';
+	import TwentyEight from './TwentyEight.svelte';
 	import { DateTime } from 'luxon';
 
 	// Firebase App (the core Firebase SDK) is always required and
@@ -25,7 +25,6 @@
 
 	var db = firebase.firestore();
 
-	const timesToBeRendered = 4;
 
 	function onClick() {
 		// alert('index onClick()')
@@ -57,30 +56,25 @@
 			});
 	}
 
-	const id = 'p1A47gDIEgd6lIbIFZoT';
 
-	var docRef = db.collection('twentyeights').doc(id);
+	// var docRef = db.collection('twentyeights').doc(id);
+	var collection28 = db.collection('twentyeights').get();
 
-	let data;
+	let data = {};
 
-	docRef
-		// .get()
-		// .then((doc) => {
-		// 	if (doc.exists) {
-		// 		console.log('Document data:', doc.data());
-		// 	} else {
-		// 		// doc.data() will be undefined in this case
-		// 		console.log('No such document!');
-		// 	}
-		// })
-		// .catch((error) => {
-		// 	console.log('Error getting document:', error);
-		// });
+	collection28
+  .then((querySnapshot) => {
 
-		.onSnapshot((doc) => {
-			console.log('Current data: ', doc.data());
-			data = doc.data();
-		});
+
+    querySnapshot.forEach((twentyEight) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(twentyEight.id, " => ", twentyEight.data());
+        data[twentyEight.id] = twentyEight.data()
+    });
+
+    console.log("data", data);
+    console.log(typeof data)
+});
 </script>
 
 <section>
@@ -93,13 +87,11 @@
   
   {#if data}
 
-  <div>
-    {data.name}
-  </div>
 
-	{#each Array(timesToBeRendered) as _, index}
-<Week docRef={docRef} data={data} firstDayDateTime={DateTime.now()} weekIndex={index} />
+	{#each Object.keys(data) as key, index}
+<TwentyEight db={db} entireCollection={data} key={key}  />
   {/each}
+
   {/if}
 
 
