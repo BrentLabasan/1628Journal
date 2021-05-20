@@ -60,7 +60,7 @@
 
 	var docRef = db.collection('twentyeights').doc(id);
 
-  let data;
+	let data;
 
 	docRef
 		// .get()
@@ -74,11 +74,12 @@
 		// })
 		// .catch((error) => {
 		// 	console.log('Error getting document:', error);
-    // });
-    .onSnapshot((doc) => {
-        console.log("Current data: ", doc.data());
-        data = doc.data();
-    });
+		// });
+
+		.onSnapshot((doc) => {
+			console.log('Current data: ', doc.data());
+			data = doc.data();
+		});
 </script>
 
 <section>
@@ -86,7 +87,10 @@
 	<!-- {DateTime.now().toISODate()} -->
 	<br />
 	<br />
-	{#each Array(timesToBeRendered) as _, index}
-<Week data={data} firstDayDateTime={DateTime.now()} weekIndex={index} />
-	{/each}
+
+	{#if data}
+		{#each Array(timesToBeRendered) as _, index}
+			<Week {data} firstDayDateTime={DateTime.now()} weekIndex={index} />
+		{/each}
+	{/if}
 </section>

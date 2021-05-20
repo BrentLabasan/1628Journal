@@ -4,7 +4,7 @@
     import { DateTime } from 'luxon';
 
     export let data, dateTime, weekIndex, dayIndex;
-    console.log(dateTime, weekIndex, dayIndex);
+    // console.log(dateTime, weekIndex, dayIndex);
 
     function onClick() {
 		alert('Day onClick()')
