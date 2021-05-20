@@ -19,10 +19,14 @@
 // console.log(data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()]);
 const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
 console.log(blah);
-
+          const newObject = Object.assign({}, data )
+          newObject.days[blah].isCompleted = true;
+console.log(newObject);
+          docRef.set(newObject);
         // docRef
         //     .collection( data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()] )
         //     .set({ isCompleted: true });
+
   //       docRef
   //           .collection( data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()] )
   //           .set({ isCompleted: true });
