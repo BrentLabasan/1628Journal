@@ -39,19 +39,23 @@ console.log(newObject);
 
 </div>
 <!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
-<br/>
-<br/>
     <!-- {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? "T" : ""} -->
 
-    
+    <div id="container_icon_completed">
+      {#if data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
 
-    {#if data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
-    <svg height="52" width="52">
-      <circle cx="26" cy="26" r="26" stroke="black" stroke-width="0" fill="black" />
-    </svg>
-  {:else}
-    <span></span>
-  {/if}
+      <svg height="52" width="52">
+        <circle cx="26" cy="26" r="26" stroke="black" stroke-width="0" fill="black" />
+      </svg>
+  
+      <!-- meow -->
+  
+    {:else}
+      <span></span>
+    {/if}
+    </div>
+
+
 
     <!-- <br/> -->
 
@@ -91,6 +95,16 @@ console.log(newObject);
       /* justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe; */
 
       justify-content: space-between;
+
+/* weird */
+      /* justify-content: center; */
+      /* weird */
+      /* justify-content: space-around; */
+      /* weird */
+      /* justify-content: space-evenly; */
+      /* justify-content: ; */
+      /* justify-content: ; */
+
       padding: 5px;
     }
 
@@ -110,12 +124,17 @@ console.log(newObject);
         background-color: grey;
     }
 
-    svg {
+    #container_icon_completed {
+      /* display: inline-flex; */
+      /* display: inline-block; */
+
       /* position: absolute; */
       /* debug */
       border: 1px solid yellow;
       align-self: center;
-      /* z-index: 999; // doesn't work */
+
+      /* doesn't work */
+      z-index: 999;
     }
 
 </style>
