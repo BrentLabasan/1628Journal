@@ -87,6 +87,6 @@
 	<br />
 	<br />
 	{#each Array(timesToBeRendered) as _, index}
-		<Week firstDayDateTime={DateTime.now()} weekIndex={index} />
+<Week data={data} firstDayDateTime={DateTime.now()} weekIndex={index} />
 	{/each}
 </section>

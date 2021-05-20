@@ -3,7 +3,7 @@
     // const timesToBeRendered = 7;
     import { DateTime } from 'luxon';
 
-    export let dateTime, weekIndex, dayIndex;
+    export let data, dateTime, weekIndex, dayIndex;
     console.log(dateTime, weekIndex, dayIndex);
 
     function onClick() {
@@ -13,7 +13,10 @@
 
 <section on:click={onClick}>
     <!-- { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() }  -->
-    { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day } 
+    { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
+<!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
+    {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
+    <!-- {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)})].isCompleted} -->
 </section>
 
 <style>
