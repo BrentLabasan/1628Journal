@@ -33,7 +33,11 @@ console.log(newObject);
 
 <section id="dayContainer" on:click={onClick}>
     <!-- { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() }  -->
-    { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
+
+    <div id="container_dayNumber">
+      { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
+
+</div>
 <!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
 <br/>
 <br/>
@@ -54,7 +58,10 @@ console.log(newObject);
     <!-- {renderDateTimeCompleted()} -->
 
     <!-- works -->
-    { data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? DateTime.fromISO(data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) : ''}
+    <div id="container_timeCompleted">
+      { data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? DateTime.fromISO(data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) : ''}
+    </div>
+
 
 
     <!-- { data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? new DateTime(data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) : ''} -->
@@ -72,7 +79,7 @@ console.log(newObject);
         border-radius: 100px; */
 
         width: 80px;
-        height: 200px;
+        height: 100px;
 
         cursor: pointer;
 
@@ -84,6 +91,14 @@ console.log(newObject);
       /* justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe; */
 
       justify-content: space-between;
+    }
+
+    #container_timeCompleted {
+      border: 1px solid orange;
+    }
+
+    #container_dayNumber {
+      border: 1px solid blue;
     }
 
     section:hover {
