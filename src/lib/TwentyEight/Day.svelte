@@ -16,7 +16,6 @@
     { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
 <!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
     {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
-    <!-- {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)})].isCompleted} -->
 </section>
 
 <style>
