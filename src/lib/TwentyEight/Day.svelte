@@ -9,7 +9,7 @@
     function renderDateTimeCompleted() {
       const blah = data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted;
       console.log("blah", blah);
-      if (blah) {
+      if (blah && data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted) {
         // return new DateTime(blah).toLocaleString(DateTime.TIME_24_SIMPLE)
 
         // return blah;
