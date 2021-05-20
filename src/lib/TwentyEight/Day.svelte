@@ -36,6 +36,7 @@ console.log(newObject);
 
     <div id="container_dayNumber">
       { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
+      { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).weekdayShort }
 
 </div>
 <!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
