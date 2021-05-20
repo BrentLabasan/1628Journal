@@ -88,8 +88,15 @@
 	<!-- {DateTime.now().toISODate()} -->
 	<br />
   <br />
+
+  
   
   {#if data}
+
+  <div>
+    {data.name}
+  </div>
+
 	{#each Array(timesToBeRendered) as _, index}
 <Week docRef={docRef} data={data} firstDayDateTime={DateTime.now()} weekIndex={index} />
   {/each}
