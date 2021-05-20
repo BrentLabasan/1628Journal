@@ -7,7 +7,7 @@
     console.log(dateTime, weekIndex, dayIndex);
 
     function onClick() {
-		// alert('clicked')
+		alert('Day onClick()')
 	}
 </script>
 
