@@ -56,7 +56,7 @@
 			});
 	}
 
-	const id = '6naRn375fOwVSK5gXLpT';
+	const id = 'bOAHP6dvlCXsgIWU37hA';
 
 	var docRef = db.collection('twentyeights').doc(id);
 
@@ -90,7 +90,7 @@
   
   {#if data}
 	{#each Array(timesToBeRendered) as _, index}
-		<Week data={data} firstDayDateTime={DateTime.now()} weekIndex={index} />
+<Week docRef={docRef} data={data} firstDayDateTime={DateTime.now()} weekIndex={index} />
   {/each}
   {/if}
 

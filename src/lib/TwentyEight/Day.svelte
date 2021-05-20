@@ -3,11 +3,29 @@
     // const timesToBeRendered = 7;
     import { DateTime } from 'luxon';
 
-    export let data, dateTime, weekIndex, dayIndex;
-    // console.log(dateTime, weekIndex, dayIndex);
+    export let docRef, data, dateTime, weekIndex, dayIndex;
+    // console.log(data, dateTime, weekIndex, dayIndex);
 
     function onClick() {
-		alert('Day onClick()')
+        // alert('Day onClick()')
+
+        // docRef.set({
+        //     [data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()]]: true
+        // });
+
+          // console.log(data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()]);
+
+// console.log(dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate().startDate);
+// console.log(data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()]);
+const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
+console.log(blah);
+
+        // docRef
+        //     .collection( data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()] )
+        //     .set({ isCompleted: true });
+  //       docRef
+  //           .collection( data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()] )
+  //           .set({ isCompleted: true });
 	}
 </script>
 

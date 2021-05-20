@@ -3,9 +3,9 @@
 	import { DateTime } from 'luxon';
 
 	const timesToBeRendered = 7;
-	export let data, firstDayDateTime, weekIndex;
-	console.log('Week firstDayDateTime', firstDayDateTime);
-	console.log('Week data', data);
+	export let docRef, data, firstDayDateTime, weekIndex;
+	// console.log('Week firstDayDateTime', firstDayDateTime);
+	// console.log('Week data', data);
 </script>
 
 <section>
@@ -15,7 +15,7 @@
 
 	{#each Array(timesToBeRendered) as _, index}
 		<!-- <Day dateTime={firstDayDateTime + index + (7 * weekIndex)} /> -->
-		<Day data={data} dateTime={firstDayDateTime} {weekIndex} dayIndex={index} />
+<Day docRef={docRef} data={data} dateTime={firstDayDateTime} {weekIndex} dayIndex={index} />
     {/each}
     
     
