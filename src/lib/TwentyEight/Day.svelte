@@ -31,7 +31,7 @@ console.log(newObject);
 	}
 </script>
 
-<section on:click={onClick}>
+<section id="dayContainer" on:click={onClick}>
     <!-- { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() }  -->
     { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
 <!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
@@ -84,7 +84,12 @@ console.log(newObject);
     }
 
     svg {
-      position: absolute;
+      /* position: absolute; */
       border: 1px solid yellow;
+    }
+
+    #dayContainer {
+      display: flex;
+      flex-direction: column;
     }
 </style>
