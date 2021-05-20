@@ -60,19 +60,25 @@
 
 	var docRef = db.collection('twentyeights').doc(id);
 
+  let data;
+
 	docRef
-		.get()
-		.then((doc) => {
-			if (doc.exists) {
-				console.log('Document data:', doc.data());
-			} else {
-				// doc.data() will be undefined in this case
-				console.log('No such document!');
-			}
-		})
-		.catch((error) => {
-			console.log('Error getting document:', error);
-		});
+		// .get()
+		// .then((doc) => {
+		// 	if (doc.exists) {
+		// 		console.log('Document data:', doc.data());
+		// 	} else {
+		// 		// doc.data() will be undefined in this case
+		// 		console.log('No such document!');
+		// 	}
+		// })
+		// .catch((error) => {
+		// 	console.log('Error getting document:', error);
+    // });
+    .onSnapshot((doc) => {
+        console.log("Current data: ", doc.data());
+        data = doc.data();
+    });
 </script>
 
 <section>
