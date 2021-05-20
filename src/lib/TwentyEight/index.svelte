@@ -5,9 +5,9 @@
 </script>
 
 <section>
-    <!-- {DateTime.now().toString()} -->
+    {DateTime.now().toISODate()  }
     <br/>
 	{#each Array(timesToBeRendered) as _, index}
-        <Week dateTime={DateTime.now()} />
+        <Week firstDayDateTime={DateTime.now()} weekIndex={index} />
 	{/each}
 </section>

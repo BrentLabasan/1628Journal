@@ -1,5 +1,14 @@
+<script>
+	// import Day from './Day.svelte';
+    // const timesToBeRendered = 7;
+    import { DateTime } from 'luxon';
+
+    export let dateTime, weekIndex, dayIndex;
+    console.log(dateTime, weekIndex, dayIndex);
+</script>
+
 <section>
-    1 
+    { dateTime.toISODate() } 
 </section>
 <style>
     section {
