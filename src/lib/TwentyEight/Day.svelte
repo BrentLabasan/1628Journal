@@ -37,7 +37,7 @@ console.log(newObject);
 <!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
 <br/>
 <br/>
-    {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
+    {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? "T" : "F"}
     <br/>
 
     <!-- {renderDateTimeCompleted()} -->
