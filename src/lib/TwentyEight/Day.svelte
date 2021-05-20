@@ -8,7 +8,8 @@
 </script>
 
 <section>
-    { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() } 
+    <!-- { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() }  -->
+    { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day } 
 </section>
 <style>
     section {
