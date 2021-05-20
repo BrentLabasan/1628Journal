@@ -21,6 +21,7 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
 console.log(blah);
           const newObject = Object.assign({}, data )
           newObject.days[blah].isCompleted = true;
+          newObject.days[blah].dateTimeCompleted = DateTime.now().toISO();
 console.log(newObject);
           docRef.set(newObject);
         // docRef
