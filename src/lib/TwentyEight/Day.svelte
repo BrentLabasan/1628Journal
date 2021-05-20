@@ -6,6 +6,15 @@
     export let docRef, data, dateTime, weekIndex, dayIndex;
     // console.log(data, dateTime, weekIndex, dayIndex);
 
+    function renderDateTimeCompleted() {
+      const blah = data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted;
+      if (blah) {
+        return DateTime(blah).toISODate;
+      } else {
+        return;
+      }
+    }
+
     function onClick() {
         // alert('Day onClick()')
 
@@ -41,6 +50,8 @@ console.log(newObject);
 <br/>
 <br/>
     {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
+    <br/>
+    <!-- {renderDateTimeCompleted()} -->
 </section>
 
 <style>
