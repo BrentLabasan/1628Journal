@@ -1,6 +1,7 @@
 <script>
 	import TwentyEight from './TwentyEight.svelte';
 	import { DateTime } from 'luxon';
+  // import '@material/mwc-button';
 
 	// Firebase App (the core Firebase SDK) is always required and
 	// must be listed before other Firebase SDKs
@@ -78,7 +79,12 @@
 </script>
 
 <section>
-	<button on:click={onClick}>+ TWENTYEIGHT</button>
+  <mwc-button on:click={onClick} id="myButton" label="+ TWENTYEIGHT" raised></mwc-button>
+
+  <!-- <mwcButton on:click={onClick} id="myButton" label="+ TWENTYEIGHT" raised></mwcButton> -->
+
+  <!-- <button on:click={onClick}>+ TWENTYEIGHT</button> -->
+  
 	<!-- {DateTime.now().toISODate()} -->
 	<br />
   <br />

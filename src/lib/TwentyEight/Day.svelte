@@ -45,8 +45,8 @@ console.log(newObject);
     <div id="container_icon_completed">
       {#if data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
 
-      <svg height="52" width="52">
-        <circle cx="26" cy="26" r="26" stroke="black" stroke-width="0" fill="black" />
+      <svg height="30" width="30">
+        <circle cx="15" cy="15" r="15" stroke="black" stroke-width="0" fill="black" />
       </svg>
   
       <!-- meow -->
@@ -83,8 +83,8 @@ console.log(newObject);
         height: 50px;
         border-radius: 100px; */
 
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
 
         cursor: pointer;
 
