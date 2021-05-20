@@ -86,11 +86,14 @@
 	<button on:click={onClick}>+ TWENTYEIGHT</button>
 	<!-- {DateTime.now().toISODate()} -->
 	<br />
-	<br />
+  <br />
+  
+  {#if data}
+	{#each Array(timesToBeRendered) as _, index}
+		<Week data={data} firstDayDateTime={DateTime.now()} weekIndex={index} />
+  {/each}
+  {/if}
 
-	{#if data}
-		{#each Array(timesToBeRendered) as _, index}
-			<Week {data} firstDayDateTime={DateTime.now()} weekIndex={index} />
-		{/each}
-	{/if}
+
+  
 </section>
