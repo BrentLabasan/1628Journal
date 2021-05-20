@@ -37,8 +37,19 @@ console.log(newObject);
 <!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
 <br/>
 <br/>
-    {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? "T" : "F"}
-    <br/>
+    <!-- {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? "T" : ""} -->
+
+    
+
+    {#if data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
+    <svg height="52" width="52">
+      <circle cx="26" cy="26" r="26" stroke="black" stroke-width="0" fill="black" />
+    </svg>
+  {:else}
+    <span>FA</span>
+  {/if}
+
+    <!-- <br/> -->
 
     <!-- {renderDateTimeCompleted()} -->
 
@@ -72,5 +83,8 @@ console.log(newObject);
         background-color: grey;
     }
 
-
+    svg {
+      position: absolute;
+      border: 1px solid yellow;
+    }
 </style>
