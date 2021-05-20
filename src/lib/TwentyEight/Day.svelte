@@ -91,13 +91,18 @@ console.log(newObject);
       /* justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe; */
 
       justify-content: space-between;
+      padding: 5px;
     }
 
     #container_timeCompleted {
+      /* debug */
       border: 1px solid orange;
+      align-self: center;
+
     }
 
     #container_dayNumber {
+      /* debug */
       border: 1px solid blue;
     }
 
@@ -107,7 +112,9 @@ console.log(newObject);
 
     svg {
       /* position: absolute; */
+      /* debug */
       border: 1px solid yellow;
+      align-self: center;
       /* z-index: 999; // doesn't work */
     }
 
