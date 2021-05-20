@@ -30,11 +30,23 @@
 	function onClick() {
 		// alert('index onClick()')
 
-		db.collection('users')
+		let obj = {};
+
+		// DateTime.now().toISODate()
+		const dt = DateTime.now();
+
+		for (let i = 0; i < 28; i++) {
+			obj[dt.plus({ day: i }).toISODate()] = {
+				isCompleted: false
+			};
+		}
+
+		db.collection('twentyeights')
 			.add({
-				first: 'Ada',
-				last: 'Lovelace',
-				born: 1815
+				startDate: DateTime.now().toISODate(),
+				days: obj
+				// last: 'Lovelace',
+				// born: 1815
 			})
 			.then((docRef) => {
 				console.log('Document written with ID: ', docRef.id);
@@ -43,6 +55,24 @@
 				console.error('Error adding document: ', error);
 			});
 	}
+
+	const id = '6naRn375fOwVSK5gXLpT';
+
+	var docRef = db.collection('twentyeights').doc(id);
+
+	docRef
+		.get()
+		.then((doc) => {
+			if (doc.exists) {
+				console.log('Document data:', doc.data());
+			} else {
+				// doc.data() will be undefined in this case
+				console.log('No such document!');
+			}
+		})
+		.catch((error) => {
+			console.log('Error getting document:', error);
+		});
 </script>
 
 <section>
