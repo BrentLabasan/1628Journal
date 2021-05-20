@@ -50,7 +50,7 @@ console.log(newObject);
       <circle cx="26" cy="26" r="26" stroke="black" stroke-width="0" fill="black" />
     </svg>
   {:else}
-    <span>FA</span>
+    <span></span>
   {/if}
 
     <!-- <br/> -->
