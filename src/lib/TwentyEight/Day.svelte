@@ -61,7 +61,7 @@ console.log(newObject);
 </section>
 
 <style>
-    section {
+    #dayContainer {
         display: inline-block;
         border-top: 1px solid black;
         border-left: 1px solid black;
@@ -72,11 +72,18 @@ console.log(newObject);
         border-radius: 100px; */
 
         width: 80px;
-        height: 80px;
+        height: 200px;
 
         cursor: pointer;
 
         padding: 10px 0;
+
+        display: flex;
+      flex-direction: column;
+
+      /* justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe; */
+
+      justify-content: space-between;
     }
 
     section:hover {
@@ -86,10 +93,7 @@ console.log(newObject);
     svg {
       /* position: absolute; */
       border: 1px solid yellow;
+      /* z-index: 999; // doesn't work */
     }
 
-    #dayContainer {
-      display: flex;
-      flex-direction: column;
-    }
 </style>
