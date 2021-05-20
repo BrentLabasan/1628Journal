@@ -78,7 +78,7 @@ console.log(newObject);
         height: 50px;
         border-radius: 100px; */
 
-        width: 80px;
+        width: 100px;
         height: 100px;
 
         cursor: pointer;
@@ -103,7 +103,7 @@ console.log(newObject);
 
     #container_dayNumber {
       /* debug */
-      border: 1px solid blue;
+      /* border: 1px solid blue; */
     }
 
     section:hover {
