@@ -37,7 +37,8 @@
 
 		for (let i = 0; i < 28; i++) {
 			obj[dt.plus({ day: i }).toISODate()] = {
-				isCompleted: false
+        isCompleted: false,
+        dateTimeCompleted: ''
 			};
 		}
 
@@ -56,7 +57,7 @@
 			});
 	}
 
-	const id = '3QFkQnYokxY1mGGZbnUv';
+	const id = 'p1A47gDIEgd6lIbIFZoT';
 
 	var docRef = db.collection('twentyeights').doc(id);
 
