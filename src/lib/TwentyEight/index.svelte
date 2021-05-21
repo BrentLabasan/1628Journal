@@ -1,7 +1,8 @@
 <script>
 	import TwentyEight from './TwentyEight.svelte';
-	import { DateTime } from 'luxon';
-  // import '@material/mwc-button';
+  import { DateTime } from 'luxon';
+  // import '@github/details-dialog-element';
+  // import '../../../node_modules/@material/mwc-button/mwc-button.js';
 
 	// Firebase App (the core Firebase SDK) is always required and
 	// must be listed before other Firebase SDKs
@@ -28,24 +29,32 @@
 
 
 	function onClick() {
-		// alert('index onClick()')
+    // alert('index onClick()')
+    
+    const habitName = document.querySelector('[name=habitName]').value;
 
-		let obj = {};
+    if (!habitName) {
+      alert("Please enter a name for the TwentyEight");
+      return null;
+    }
 
+    let obj = {};
+    
 		// DateTime.now().toISODate()
 		const dt = DateTime.now();
 
 		for (let i = 0; i < 28; i++) {
 			obj[dt.plus({ day: i }).toISODate()] = {
         isCompleted: false,
-        dateTimeCompleted: ''
+        dateTimeCompleted: '',
 			};
 		}
 
 		db.collection('twentyeights')
 			.add({
 				startDate: DateTime.now().toISODate(),
-				days: obj
+        days: obj,
+        name: document.querySelector('[name=habitName]').value
 				// last: 'Lovelace',
 				// born: 1815
 			})
@@ -54,7 +63,9 @@
 			})
 			.catch((error) => {
 				console.error('Error adding document: ', error);
-			});
+      });
+      document.querySelector('[name=habitName]').value = null;
+
 	}
 
 
@@ -79,11 +90,37 @@
 </script>
 
 <section>
-  <mwc-button on:click={onClick} id="myButton" label="+ TWENTYEIGHT" raised></mwc-button>
+  <!-- <mwc-button on:click={onClick} id="myButton" label="+ TWENTYEIGHT" raised></mwc-button> -->
 
   <!-- <mwcButton on:click={onClick} id="myButton" label="+ TWENTYEIGHT" raised></mwcButton> -->
 
-  <!-- <button on:click={onClick}>+ TWENTYEIGHT</button> -->
+  <button on:click={onClick}>+ TWENTYEIGHT</button> <input type="text" name="habitName" placeholder="habit name" />
+
+  <!-- <details>
+    <summary>Open dialog</summary>
+    <details-dialog>
+      Modal content
+      <button type="button" data-close-dialog>Close</button>
+    </details-dialog>
+  </details> -->
+
+
+  <!-- <details class="details-reset details-with-dialog mt-4">
+    <summary class="btn" role="button">Dialog</summary>
+    <details-dialog class="details-dialog anim-fade-in fast wide" aria-label="Dialog" role="dialog" aria-modal="true" tabindex="-1">
+      <div class="Box d-flex flex-column">
+        <div class="Box-header">
+          Title
+        </div>
+        <div class="Box-body overflow-auto">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div class="Box-footer">
+          <button type="button" class="btn btn-block" data-close-dialog="">Close</button>
+        </div>
+      </div>
+    </details-dialog>
+  </details> -->
   
 	<!-- {DateTime.now().toISODate()} -->
 	<br />

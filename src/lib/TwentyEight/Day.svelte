@@ -25,6 +25,10 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
 console.log(blah);
           const newObject = Object.assign({}, data )
           newObject.days[blah].isCompleted = !newObject.days[blah].isCompleted;
+          if (newObject.days[blah].isCompleted) {
+            var snd = new Audio("../../../sound-effects/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.mp3"); // buffers automatically when created
+snd.play();
+          }
           newObject.days[blah].dateTimeCompleted = DateTime.now().toISO();
 console.log(newObject);
           docRef.set(newObject);
