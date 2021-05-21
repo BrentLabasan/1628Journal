@@ -4,6 +4,7 @@
     import { DateTime } from 'luxon';
     import rough from 'roughjs';
     import { onMount } from 'svelte';
+    import 'animate.css';
     export let docRef, data, dateTime, weekIndex, dayIndex;
     // console.log(data, dateTime, weekIndex, dayIndex);
 
@@ -72,12 +73,16 @@ console.log(newObject);
     <div 
     id="container_dayNumber"
     class:bold="{dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() === DateTime.now().toISODate()}"
-
+    class="animate__animated animate__infinite"
+    class:animate__bounce="{dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() === DateTime.now().toISODate()}"
+    
     >
 
 
-      { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
-      { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).weekdayShort }
+  { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
+  { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).weekdayShort }
+
+
 
 </div>
 <!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
