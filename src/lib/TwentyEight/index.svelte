@@ -36,8 +36,8 @@ function closeDialog() {
   document.querySelector('wired-dialog').removeAttribute('open');
 }
 
-	function onClick() {
-    // alert('index onClick()')
+	function onClick_addHabit() {
+    // alert('index onClick_addHabit()')
     
     const habitName = document.querySelector('[name=habitName]').value;
 
@@ -60,14 +60,19 @@ function closeDialog() {
 
 		db.collection('twentyeights')
 			.add({
-				startDate: DateTime.now().toISODate(),
+				startDate: DateTime.now().toISODate(), // todo might change
         days: obj,
         name: document.querySelector('[name=habitName]').value
 				// last: 'Lovelace',
 				// born: 1815
 			})
 			.then((docRef) => {
-				console.log('Document written with ID: ', docRef.id);
+        console.log('Document written with ID: ', docRef.id);
+        
+
+        db.collection("twentyeights").doc( docRef.id ).set({
+            id: docRef.id
+        })
 			})
 			.catch((error) => {
 				console.error('Error adding document: ', error);
@@ -98,9 +103,9 @@ function closeDialog() {
 </script>
 
 <section>
-  <!-- <mwc-button on:click={onClick} id="myButton" label="+ TWENTYEIGHT" raised></mwc-button> -->
+  <!-- <mwc-button on:click={onClick_addHabit} id="myButton" label="+ TWENTYEIGHT" raised></mwc-button> -->
 
-  <!-- <mwcButton on:click={onClick} id="myButton" label="+ TWENTYEIGHT" raised></mwcButton> -->
+  <!-- <mwcButton on:click={onClick_addHabit} id="myButton" label="+ TWENTYEIGHT" raised></mwcButton> -->
 
   <wired-button>Click Me</wired-button>
   <wired-button on:click={openDialog}>open dialog</wired-button>
@@ -114,7 +119,7 @@ function closeDialog() {
     </div>
   </wired-dialog>
 
-  <button on:click={onClick}>+ TWENTYEIGHT</button> <input type="text" name="habitName" placeholder="habit name" />
+  <button on:click={onClick_addHabit}>+ TWENTYEIGHT</button> <input type="text" name="habitName" placeholder="habit name" />
 
   <!-- <details>
     <summary>Open dialog</summary>

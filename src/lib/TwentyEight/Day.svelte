@@ -7,6 +7,8 @@
     export let docRef, data, dateTime, weekIndex, dayIndex;
     // console.log(data, dateTime, weekIndex, dayIndex);
 
+    const identifier = `${data.id}-${weekIndex}-${dayIndex}`
+
     function renderDateTimeCompleted() {
       const blah = data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted;
       console.log("blah", blah);
@@ -36,7 +38,7 @@ console.log(newObject);
   }
   
   onMount(async () => {
-    let roughCanvas = rough.canvas(document.getElementById('canvas'));
+    let roughCanvas = rough.canvas(document.getElementById(identifier));
     
     roughCanvas.rectangle(10, 10, 100, 100);
 roughCanvas.rectangle(140, 10, 100, 100, { fill: 'red'});
@@ -71,7 +73,7 @@ roughCanvas.rectangle(140, 10, 100, 100, { fill: 'red'});
         <circle cx="15" cy="15" r="15" stroke="black" stroke-width="0" fill="black" />
       </svg>
 
-      <canvas id="canvas">canvas</canvas>
+      <canvas id={identifier}>canvas</canvas>
       <svg id="svg"></svg>
       <span id="target">a</span>
   
