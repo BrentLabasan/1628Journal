@@ -45,7 +45,7 @@ console.log(newObject);
     // roughCanvas.rectangle(140, 10, 100, 100, { fill: 'red'});
 
 
-    roughCanvas.circle(50, 50, 80, { fill: 'red', fillWeight: 3 }); 
+    roughCanvas.circle(15, 15, 25, { fill: 'black', fillWeight: 3 }); 
 
     // roughCanvas.ellipse(350, 50, 150, 80);
 // roughCanvas.ellipse(610, 50, 150, 80, {fill: 'blue', stroke: 'red'});
@@ -78,22 +78,21 @@ console.log(newObject);
     <!-- {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? "T" : ""} -->
 
     <div id="container_icon_completed">
-      {#if data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
 
-      <svg height="30" width="30">
+      <!-- <svg height="30" width="30">
         <circle cx="15" cy="15" r="15" stroke="black" stroke-width="0" fill="black" />
-      </svg>
+      </svg> -->
 
-      <canvas id={identifier}>canvas</canvas>
+      <canvas 
+      class:hidden="{!data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}"
+      id={identifier} width="30" height="30">&nbsp;</canvas>
 
       <!-- <svg id="svg"></svg> -->
       <!-- <span id="target">a</span> -->
   
       <!-- meow -->
   
-    {:else}
-      <span></span>
-    {/if}
+
     </div>
 
 
@@ -116,6 +115,9 @@ console.log(newObject);
 </section>
 
 <style>
+  .hidden {
+    visibility: hidden;
+  }
     #dayContainer {
         display: inline-block;
         border-top: 1px solid black;
