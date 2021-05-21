@@ -38,10 +38,21 @@ console.log(newObject);
   }
   
   onMount(async () => {
+
+    // working
     let roughCanvas = rough.canvas(document.getElementById(identifier));
-    
-    roughCanvas.rectangle(10, 10, 100, 100);
-roughCanvas.rectangle(140, 10, 100, 100, { fill: 'red'});
+    // roughCanvas.rectangle(10, 10, 100, 100);
+    // roughCanvas.rectangle(140, 10, 100, 100, { fill: 'red'});
+
+
+    roughCanvas.circle(50, 50, 80, { fill: 'red', fillWeight: 3 }); 
+
+    // roughCanvas.ellipse(350, 50, 150, 80);
+// roughCanvas.ellipse(610, 50, 150, 80, {fill: 'blue', stroke: 'red'});
+
+
+
+
     
     // let roughSvg = rough.svg(document.getElementById('svg'));
     // document.getElementById('target').appendChild(roughSvg.rectangle(10, 10, 100, 100));
@@ -74,8 +85,9 @@ roughCanvas.rectangle(140, 10, 100, 100, { fill: 'red'});
       </svg>
 
       <canvas id={identifier}>canvas</canvas>
-      <svg id="svg"></svg>
-      <span id="target">a</span>
+
+      <!-- <svg id="svg"></svg> -->
+      <!-- <span id="target">a</span> -->
   
       <!-- meow -->
   
