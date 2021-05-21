@@ -30,8 +30,15 @@
   
   {#if data}
 
-  <div>
-    {data.name}
+  <div id="container_info">
+	  <span>
+		{data.name}
+	  </span>
+	
+<span>
+	{data.tags}
+</span>
+	
   </div>
 
 	{#each Array(timesToBeRendered) as _, index}
@@ -42,3 +49,10 @@
 
   
 </section>
+
+<style>
+	#container_info {
+		display: flex;
+		justify-content: space-between;
+	}
+</style>
