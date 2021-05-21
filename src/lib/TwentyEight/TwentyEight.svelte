@@ -42,7 +42,7 @@
   </div>
 
 	{#each Array(timesToBeRendered) as _, index}
-<Week docRef={docRef} data={data} firstDayDateTime={DateTime.now()} weekIndex={index} />
+<Week docRef={docRef} data={data} firstDayDateTime={DateTime.fromISO(data.startDate)} weekIndex={index} />
   {/each}
   {/if}
 

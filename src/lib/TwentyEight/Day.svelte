@@ -68,7 +68,10 @@ console.log(newObject);
 
     <!-- works -->
     <div id="container_timeCompleted">
+      {#if data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
+
       { data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? DateTime.fromISO(data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) : ''}
+      {/if}
     </div>
 
 
