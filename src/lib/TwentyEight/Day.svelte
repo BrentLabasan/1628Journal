@@ -3,7 +3,7 @@
     // const timesToBeRendered = 7;
     import { DateTime } from 'luxon';
     import rough from 'roughjs';
-
+    import { onMount } from 'svelte';
     export let docRef, data, dateTime, weekIndex, dayIndex;
     // console.log(data, dateTime, weekIndex, dayIndex);
 
@@ -35,8 +35,22 @@ console.log(newObject);
           docRef.set(newObject);
   }
   
-  // const rc = rough.canvas(document.getElementById('canvas'));
+  onMount(async () => {
+    let roughCanvas = rough.canvas(document.getElementById('canvas'));
+    
+    roughCanvas.rectangle(10, 10, 100, 100);
+roughCanvas.rectangle(140, 10, 100, 100, { fill: 'red'});
+    
+    // let roughSvg = rough.svg(document.getElementById('svg'));
+    // document.getElementById('target').appendChild(roughSvg.rectangle(10, 10, 100, 100));
+
+  // svg.appendChild(roughSvg.rectangle(10, 10, 100, 100));
+// svg.appendChild(roughSvg.rectangle(140, 10, 100, 100, { fill: 'red'}));
+
 // rc.rectangle(10, 10, 200, 200); // x, y, width, height
+  });
+  
+
 </script>
 
 <section id="dayContainer" on:click={onClick}>
@@ -57,7 +71,9 @@ console.log(newObject);
         <circle cx="15" cy="15" r="15" stroke="black" stroke-width="0" fill="black" />
       </svg>
 
-      <!-- <canvas id="canvas"></canvas> -->
+      <canvas id="canvas">canvas</canvas>
+      <svg id="svg"></svg>
+      <span id="target">a</span>
   
       <!-- meow -->
   
