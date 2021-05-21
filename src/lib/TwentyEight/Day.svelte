@@ -69,7 +69,13 @@ console.log(newObject);
 <section id="dayContainer" on:click={onClick}>
     <!-- { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() }  -->
 
-    <div id="container_dayNumber">
+    <div 
+    id="container_dayNumber"
+    class:bold="{dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() === DateTime.now().toISODate()}"
+
+    >
+
+
       { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
       { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).weekdayShort }
 
@@ -195,6 +201,10 @@ console.log(newObject);
   50% {
     opacity: 0;
   }
+}
+
+.bold {
+  font-weight: bold;
 }
 
 </style>

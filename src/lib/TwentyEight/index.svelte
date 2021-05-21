@@ -1,5 +1,6 @@
 <script>
 	import TwentyEight from './TwentyEight.svelte';
+	import ShowByTag from './ShowByTag.svelte';
   import { DateTime } from 'luxon';
   // import '@github/details-dialog-element';
   // import '../../../node_modules/@material/mwc-button/mwc-button.js';
@@ -70,7 +71,7 @@ function closeDialog() {
         console.log('Document written with ID: ', docRef.id);
         
 
-        db.collection("twentyeights").doc( docRef.id ).set({
+        db.collection("twentyeights").doc( docRef.id ).update({
             id: docRef.id
         })
 			})
@@ -150,26 +151,20 @@ function closeDialog() {
 	<!-- {DateTime.now().toISODate()} -->
 	<br />
   <br />
+  <br />
+  <br />
 
-  
-  
   {#if data}
 
-
-  {#each Object.keys(data) as key, index}
-  <!-- <TwentyEight db={db} entireCollection={data} key={key}  /> -->
-
-
-  <!-- {data[key].days[DateTime.now().toISODate()].isCompleted} -->
-
-  <!-- {data[key].tags} -->
-
-  <!-- {#if data[key].tags && data[key].tags.includes('Alaska Airlines')} -->
-  {#if data[key].tags && data[key].tags.includes('stretches')}
-  <TwentyEight db={db} entireCollection={data} key={key}  />
-  {/if}
   
-  {/each}
+
+  <ShowByTag tag="Alaska Airlines" db={db} data={data}>
+  </ShowByTag>
+  <ShowByTag tag="stretches" db={db} data={data} >
+  </ShowByTag>
+  <ShowByTag tag="daily reading" db={db} data={data} >
+  </ShowByTag>
+
 
   {/if}
 
