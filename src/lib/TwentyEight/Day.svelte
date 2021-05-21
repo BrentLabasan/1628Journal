@@ -184,6 +184,17 @@ console.log(newObject);
 
       /* doesn't work */
       z-index: 999;
+      
+
+      /* animation: blinker 1s linear infinite; */
     }
+
+
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
 
 </style>

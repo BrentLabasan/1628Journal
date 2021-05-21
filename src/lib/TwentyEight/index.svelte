@@ -156,8 +156,17 @@ function closeDialog() {
   {#if data}
 
 
-	{#each Object.keys(data) as key, index}
-<TwentyEight db={db} entireCollection={data} key={key}  />
+  {#each Object.keys(data) as key, index}
+  <!-- <TwentyEight db={db} entireCollection={data} key={key}  /> -->
+
+
+  <!-- {data[key].days[DateTime.now().toISODate()].isCompleted} -->
+
+  {data[key].tags}
+  {#if data[key].tags && data[key].tags.includes('Alaska Airlines')}
+  <TwentyEight db={db} entireCollection={data} key={key}  />
+  {/if}
+  
   {/each}
 
   {/if}
