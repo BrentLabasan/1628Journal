@@ -2,6 +2,7 @@
 	// import Day from './Day.svelte';
     // const timesToBeRendered = 7;
     import { DateTime } from 'luxon';
+    import rough from 'roughjs';
 
     export let docRef, data, dateTime, weekIndex, dayIndex;
     // console.log(data, dateTime, weekIndex, dayIndex);
@@ -32,7 +33,10 @@ snd.play();
           newObject.days[blah].dateTimeCompleted = DateTime.now().toISO();
 console.log(newObject);
           docRef.set(newObject);
-	}
+  }
+  
+  // const rc = rough.canvas(document.getElementById('canvas'));
+// rc.rectangle(10, 10, 200, 200); // x, y, width, height
 </script>
 
 <section id="dayContainer" on:click={onClick}>
@@ -52,6 +56,8 @@ console.log(newObject);
       <svg height="30" width="30">
         <circle cx="15" cy="15" r="15" stroke="black" stroke-width="0" fill="black" />
       </svg>
+
+      <!-- <canvas id="canvas"></canvas> -->
   
       <!-- meow -->
   

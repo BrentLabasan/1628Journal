@@ -1,7 +1,7 @@
 <script>
 	import Week from './Week.svelte';
 	import { DateTime } from 'luxon';
-
+	
     export let db, entireCollection, key ;
 
 
