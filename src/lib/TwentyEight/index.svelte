@@ -4,6 +4,8 @@
   // import '@github/details-dialog-element';
   // import '../../../node_modules/@material/mwc-button/mwc-button.js';
 
+  // import { WiredButton, WiredInput } from "wired-elements"
+
 	// Firebase App (the core Firebase SDK) is always required and
 	// must be listed before other Firebase SDKs
 	import firebase from 'firebase/app';
@@ -27,6 +29,12 @@
 
 	var db = firebase.firestore();
 
+function openDialog() {
+  document.querySelector('wired-dialog').setAttribute('open', '');
+}
+function closeDialog() {
+  document.querySelector('wired-dialog').removeAttribute('open');
+}
 
 	function onClick() {
     // alert('index onClick()')
@@ -93,6 +101,18 @@
   <!-- <mwc-button on:click={onClick} id="myButton" label="+ TWENTYEIGHT" raised></mwc-button> -->
 
   <!-- <mwcButton on:click={onClick} id="myButton" label="+ TWENTYEIGHT" raised></mwcButton> -->
+
+  <wired-button>Click Me</wired-button>
+  <wired-button on:click={openDialog}>open dialog</wired-button>
+
+  <wired-dialog>
+    <p>
+      Dialog content here
+    </p>
+    <div style="text-align: right; padding: 30px 16px 16px;">
+      <wired-button id="closeDialog" on:click={closeDialog}>Close dialog</wired-button>
+    </div>
+  </wired-dialog>
 
   <button on:click={onClick}>+ TWENTYEIGHT</button> <input type="text" name="habitName" placeholder="habit name" />
 

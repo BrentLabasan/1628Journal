@@ -26,6 +26,7 @@
     "@webcomponents/webcomponentsjs": "^2.5.0",
     "cookie": "^0.4.1",
     "firebase": "^8.6.1",
-    "luxon": "^1.27.0"
+    "luxon": "^1.27.0",
+    "wired-elements": "^3.0.0-rc.6"
   }
 }
