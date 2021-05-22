@@ -1,6 +1,7 @@
 <script>
 	import TwentyEight from './TwentyEight.svelte';
 	import ShowByTag from './ShowByTag.svelte';
+	import ShowSelected from './ShowSelected.svelte';
   import { DateTime } from 'luxon';
   // import '@github/details-dialog-element';
   // import '../../../node_modules/@material/mwc-button/mwc-button.js';
@@ -41,6 +42,8 @@ function closeDialog() {
     // alert('index onClick_addHabit()')
     
     const habitName = document.querySelector('[name=habitName]').value;
+    const tagsString = document.querySelector('[name=tags]').value;
+    const tagsArray = tagsString.split(',');
 
     if (!habitName) {
       alert("Please enter a name for the TwentyEight");
@@ -63,7 +66,8 @@ function closeDialog() {
 			.add({
 				startDate: DateTime.now().toISODate(), // todo might change
         days: obj,
-        name: document.querySelector('[name=habitName]').value
+        name: document.querySelector('[name=habitName]').value,
+        tags: tagsArray
 				// last: 'Lovelace',
 				// born: 1815
 			})
@@ -101,6 +105,26 @@ function closeDialog() {
     console.log("data", data);
     console.log(typeof data)
 });
+
+function filterDataByTag(data, tag) {
+  // return data.filter(twentyEight => twentyEight.tags.includes(tag));
+
+  // Object.entries(data).filter(([key, arr]) => console.log('blah', arr) );
+  // console.log("woof" );
+  debugger;
+
+  let newObject = Object.assign({}, data);
+
+  Object.entries(data).filter( ([key, arr]) => { 
+    // console.log("arr.tags", arr.tags);
+
+    if (!arr.tags.includes(tag)) {
+      delete newObject[key];
+    }
+  });
+
+  return newObject;
+}
 </script>
 
 <section>
@@ -120,7 +144,9 @@ function closeDialog() {
     </div>
   </wired-dialog>
 
-  <button on:click={onClick_addHabit}>+ TWENTYEIGHT</button> <input type="text" name="habitName" placeholder="habit name" />
+  <button on:click={onClick_addHabit}>+ TWENTYEIGHT</button> 
+  <input type="text" name="habitName" placeholder="habit name" />
+  <input type="text" name="tags" placeholder="tags (separated by commas)" />
 
   <!-- <details>
     <summary>Open dialog</summary>
@@ -154,16 +180,39 @@ function closeDialog() {
   <br />
   <br />
 
-  {#if data}
+  {#if Object.keys(data).length > 0}
 
   
 
-  <ShowByTag tag="Alaska Airlines" db={db} data={data}>
+  <!-- <ShowByTag tag="Alaska Airlines" db={db} data={data}>
   </ShowByTag>
   <ShowByTag tag="stretches" db={db} data={data} >
   </ShowByTag>
-  <ShowByTag tag="daily reading" db={db} data={data} >
+
+  <ShowByTag tag="Fabricator Studio" db={db} data={data} >
   </ShowByTag>
+
+  <ShowByTag tag="chores" db={db} data={data} >
+  </ShowByTag>
+  <ShowByTag tag="daily reading" db={db} data={data} >
+  </ShowByTag> -->
+
+  <ShowSelected tag="Alaska Airlines" db={db} data={filterDataByTag(data, 'Alaska Airlines')}>
+  </ShowSelected>
+  <ShowSelected tag="stretches" db={db} data={filterDataByTag(data, 'stretches')}>
+  </ShowSelected>
+  <ShowSelected tag="Fabricator Studio" db={db} data={filterDataByTag(data, 'Fabricator Studio')}>
+  </ShowSelected>
+  <ShowSelected tag="cleaning" db={db} data={filterDataByTag(data, 'cleaning')}>
+  </ShowSelected>
+  <ShowSelected tag="daily reading" db={db} data={filterDataByTag(data, 'daily reading')}>
+  </ShowSelected>
+
+
+  <!-- <ShowSelected tag="" db={db} data={filterDataByTag(data, '')}>
+  <ShowSelected tag="" db={db} data={filterDataByTag(data, '')}>
+  <ShowSelected tag="" db={db} data={filterDataByTag(data, '')}> -->
+
 
 
   {/if}
