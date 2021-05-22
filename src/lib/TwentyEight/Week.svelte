@@ -11,7 +11,9 @@
 <section>
 	<!-- {dateTime} -->
     <!-- <br/> -->
-    
+	
+
+
 
 	{#each Array(timesToBeRendered) as _, index}
 		<!-- <Day dateTime={firstDayDateTime + index + (7 * weekIndex)} /> -->
@@ -26,4 +28,6 @@
 		display: inline-grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	}
+
+
 </style>
