@@ -83,6 +83,7 @@ function closeDialog() {
 				console.error('Error adding document: ', error);
       });
       document.querySelector('[name=habitName]').value = null;
+      document.querySelector('[name=tags]').value = null;
 
 	}
 
@@ -146,7 +147,7 @@ function filterDataByTag(data, tag) {
 
   <button on:click={onClick_addHabit}>+ TWENTYEIGHT</button> 
   <input type="text" name="habitName" placeholder="habit name" />
-  <input type="text" name="tags" placeholder="tags (separated by commas)" />
+  <input type="text" name="tags" placeholder="tags (separated by commas, no spaces after commas)" />
 
   <!-- <details>
     <summary>Open dialog</summary>
@@ -220,3 +221,9 @@ function filterDataByTag(data, tag) {
 
   
 </section>
+
+<style>
+  [name="tags"] {
+    width: 400px;
+  }
+</style>
