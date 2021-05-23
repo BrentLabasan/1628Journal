@@ -14,23 +14,32 @@ import { dataset_dev } from 'svelte/internal';
         return a[1].name > b[1].name ? 1 : -1;
     });
 
+    data.map((x) => {
+        if (x[1].days[DateTime.now().toISODate()].isCompleted) {
+            unsortedComplete.push(x);
+} else {
+            unsortedIncomplete.push(x);
 
-    Object.entries(data).sort((a, b) => {
-                debugger;
-
-        const boolah = a[1][1].days[DateTime.now().toISODate()].isCompleted && !b[1][1].days[DateTime.now().toISODate()].isCompleted;
-
-        console.log("boolah", boolah);
-
-
-        // return boolah ? 1 : -1;
-
-        if (boolah) {
-            unsortedIncomplete.push(a);
-        } else {
-            unsortedComplete.push(a);
         }
     });
+
+
+    // Object.entries(data).sort((a, b) => {
+    //             debugger;
+
+    //     const boolah = a[1][1].days[DateTime.now().toISODate()].isCompleted && !b[1][1].days[DateTime.now().toISODate()].isCompleted;
+
+    //     console.log("boolah", boolah);
+
+
+    //     // return boolah ? 1 : -1;
+
+    //     if (boolah) {
+    //         unsortedIncomplete.push(a);
+    //     } else {
+    //         unsortedComplete.push(a);
+    //     }
+    // });
 
     // unsortedComplete = unsortedComplete.sort((a, b) => {
     //     const taco = a[1].name > b[1].name ? 1 : -1;
@@ -44,8 +53,8 @@ import { dataset_dev } from 'svelte/internal';
 
     debugger;
 
-    newData = unsortedComplete.concat(unsortedIncomplete);
-
+    newData = unsortedIncomplete.concat(unsortedComplete);
+    
     // newData = data;
     
     console.log("ShowSelected", tag, data);
