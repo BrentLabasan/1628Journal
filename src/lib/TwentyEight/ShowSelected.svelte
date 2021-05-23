@@ -10,11 +10,17 @@ import { dataset_dev } from 'svelte/internal';
 
     let newData = [], unsortedComplete = [], unsortedIncomplete = [];
 
-    Object.entries(data).sort((a, b) => {
-        const boolah = a[1].days[DateTime.now().toISODate()].isCompleted && !b[1].days[DateTime.now().toISODate()].isCompleted;
-        // debugger;
+    data = Object.entries(data).sort((a, b) => { 
+        return a[1].name > b[1].name ? 1 : -1;
+    });
 
-        // console.log("boolah", boolah);
+
+    Object.entries(data).sort((a, b) => {
+                debugger;
+
+        const boolah = a[1][1].days[DateTime.now().toISODate()].isCompleted && !b[1][1].days[DateTime.now().toISODate()].isCompleted;
+
+        console.log("boolah", boolah);
 
 
         // return boolah ? 1 : -1;
@@ -26,17 +32,21 @@ import { dataset_dev } from 'svelte/internal';
         }
     });
 
-    unsortedComplete = unsortedComplete.sort((a, b) => {
-        const taco = a[1].name > b[1].name ? 1 : -1;
-        // console.log("taco", a[1].name, b[1].name,  taco);
-        return taco;
-    });
+    // unsortedComplete = unsortedComplete.sort((a, b) => {
+    //     const taco = a[1].name > b[1].name ? 1 : -1;
+    //     // console.log("taco", a[1].name, b[1].name,  taco);
+    //     return taco;
+    // });
 
-    unsortedIncomplete = unsortedIncomplete.sort((a, b) => {
-        return a[1].name > b[1].name ? 1 : -1;
-    });
+    // unsortedIncomplete = unsortedIncomplete.sort((a, b) => {
+    //     return a[1].name > b[1].name ? 1 : -1;
+    // });
+
+    debugger;
 
     newData = unsortedComplete.concat(unsortedIncomplete);
+
+    // newData = data;
     
     console.log("ShowSelected", tag, data);
     console.log("ShowSelected", tag, newData);
