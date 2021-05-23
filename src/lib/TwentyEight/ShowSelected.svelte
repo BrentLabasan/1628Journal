@@ -14,7 +14,7 @@ import { dataset_dev } from 'svelte/internal';
         const boolah = a[1].days[DateTime.now().toISODate()].isCompleted && !b[1].days[DateTime.now().toISODate()].isCompleted;
         // debugger;
 
-        console.log("boolah", boolah);
+        // console.log("boolah", boolah);
 
 
         // return boolah ? 1 : -1;
@@ -26,7 +26,15 @@ import { dataset_dev } from 'svelte/internal';
         }
     });
 
-    
+    unsortedComplete = unsortedComplete.sort((a, b) => {
+        const taco = a[1].name > b[1].name ? 1 : -1;
+        // console.log("taco", a[1].name, b[1].name,  taco);
+        return taco;
+    });
+
+    unsortedIncomplete = unsortedIncomplete.sort((a, b) => {
+        return a[1].name > b[1].name ? 1 : -1;
+    });
 
     newData = unsortedComplete.concat(unsortedIncomplete);
     
