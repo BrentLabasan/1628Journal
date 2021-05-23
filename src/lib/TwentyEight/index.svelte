@@ -112,7 +112,8 @@ function filterDataByTag(data, tag) {
 
   // Object.entries(data).filter(([key, arr]) => console.log('blah', arr) );
   // console.log("woof" );
-  debugger;
+
+  // debugger;
 
   let newObject = Object.assign({}, data);
 
@@ -198,16 +199,23 @@ function filterDataByTag(data, tag) {
   <ShowByTag tag="daily reading" db={db} data={data} >
   </ShowByTag> -->
 
-  <ShowSelected tag="Alaska Airlines" db={db} data={filterDataByTag(data, 'Alaska Airlines')}>
-  </ShowSelected>
+
+
+
+  <!-- <ShowSelected tag="Alaska Airlines" db={db} data={filterDataByTag(data, 'Alaska Airlines')}>
+  </ShowSelected> -->
+
   <ShowSelected tag="stretches" db={db} data={filterDataByTag(data, 'stretches')}>
   </ShowSelected>
-  <ShowSelected tag="Fabricator Studio" db={db} data={filterDataByTag(data, 'Fabricator Studio')}>
+
+  <!-- <ShowSelected tag="Fabricator Studio" db={db} data={filterDataByTag(data, 'Fabricator Studio')}>
   </ShowSelected>
-  <!-- <ShowSelected tag="cleaning" db={db} data={filterDataByTag(data, 'cleaning')}>
-  </ShowSelected> -->
+
   <ShowSelected tag="daily reading" db={db} data={filterDataByTag(data, 'daily reading')}>
-  </ShowSelected>
+  </ShowSelected> -->
+
+
+
 
 
   <!-- <ShowSelected tag="" db={db} data={filterDataByTag(data, '')}>

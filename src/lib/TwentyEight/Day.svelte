@@ -4,7 +4,7 @@
     import { DateTime } from 'luxon';
     import rough from 'roughjs';
     import { onMount } from 'svelte';
-    import 'animate.css';
+    // import 'animate.css';
     export let docRef, data, dateTime, weekIndex, dayIndex;
     // console.log(data, dateTime, weekIndex, dayIndex);
 
