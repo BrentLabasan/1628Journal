@@ -8,16 +8,27 @@ import { dataset_dev } from 'svelte/internal';
 
     // 28s that are uncompleted for today are displayed before 28s that have been completed
 
-    let newData = Object.entries(data).sort((a, b) => {
+    let newData = [], unsortedComplete = [], unsortedIncomplete = [];
+
+    Object.entries(data).sort((a, b) => {
         const boolah = a[1].days[DateTime.now().toISODate()].isCompleted && !b[1].days[DateTime.now().toISODate()].isCompleted;
         // debugger;
 
         console.log("boolah", boolah);
 
-        // return boolah ? -1 : 1;
-        return boolah ? 1 : -1;
+
+        // return boolah ? 1 : -1;
+
+        if (boolah) {
+            unsortedIncomplete.push(a);
+        } else {
+            unsortedComplete.push(a);
+        }
     });
 
+    
+
+    newData = unsortedComplete.concat(unsortedIncomplete);
     
     console.log("ShowSelected", tag, data);
     console.log("ShowSelected", tag, newData);
