@@ -205,14 +205,14 @@ function filterDataByTag(data, tag) {
   <ShowSelected tag="Alaska Airlines" db={db} data={filterDataByTag(data, 'Alaska Airlines')}>
   </ShowSelected>
 
-  <!-- <ShowSelected tag="stretches" db={db} data={filterDataByTag(data, 'stretches')}>
+  <ShowSelected tag="stretches" db={db} data={filterDataByTag(data, 'stretches')}>
   </ShowSelected>
 
   <ShowSelected tag="Fabricator Studio" db={db} data={filterDataByTag(data, 'Fabricator Studio')}>
   </ShowSelected>
 
   <ShowSelected tag="daily reading" db={db} data={filterDataByTag(data, 'daily reading')}>
-  </ShowSelected> -->
+  </ShowSelected>
 
 
 
