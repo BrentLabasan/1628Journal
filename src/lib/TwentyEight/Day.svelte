@@ -50,10 +50,11 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
 
                 if (earliestTimeIn28Completed === null) {
                   earliestTimeIn28Completed = earliestTimeIn28Completed;
-                  snd2.play();
+                  setTimeout(function(){ snd2.play(); }, 1000);
+                  
                 } else {
                   if (dayInSequence.dateTimeCompleted < earliestTimeIn28Completed) {
-                    snd2.play();
+                    setTimeout(function(){ snd2.play(); }, 1000);
                   }
                 }
               }
