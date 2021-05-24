@@ -214,6 +214,9 @@ function filterDataByTag(data, tag) {
   <ShowSelected tag="daily reading" db={db} data={filterDataByTag(data, 'daily reading')}>
   </ShowSelected>
 
+  <ShowSelected tag="relationships" db={db} data={filterDataByTag(data, 'relationships')}>
+  </ShowSelected>
+
 
 
 

@@ -1,3 +1,5 @@
+<!-- each 28 is operating in real time mode -->
+
 <script>
 	import Week from './Week.svelte';
 	import { DateTime } from 'luxon';

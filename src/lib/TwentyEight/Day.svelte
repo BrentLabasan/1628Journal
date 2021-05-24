@@ -26,14 +26,36 @@
     function onClick() {
         // alert('Day onClick()')
 const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
-console.log(blah);
+// console.log(blah);
           const newObject = Object.assign({}, data )
           newObject.days[blah].isCompleted = !newObject.days[blah].isCompleted;
           if (newObject.days[blah].isCompleted) {
             var snd = new Audio("../../../sound-effects/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.mp3"); // buffers automatically when created
-snd.play();
-          }
+            snd.play();
+
+
+            // - play an extra sound effect upon marking a Day as completed, if it's the earliest time completed so far of that week
+            for (let i = 0; i < 28; i++) {
+              debugger;
+
+              let dayInSequence = data.days[ DateTime.fromISO(data.startDate).plus({day: i}).toISODate() ];
+
+              if (dayInSequence.dateTimeCompleted) {
+                console.log(dayInSequence.dateTimeCompleted);
+              }
+
+
+            }
+
+          // mark in Firebase as completed
           newObject.days[blah].dateTimeCompleted = DateTime.now().toISO();
+          } else {
+            newObject.days[blah].dateTimeCompleted = null;
+          }
+
+
+
+
 console.log(newObject);
           docRef.set(newObject);
   }
@@ -95,6 +117,7 @@ console.log(newObject);
       </svg> -->
 
       <canvas 
+      class="doodle-btn"
       class:hidden="{!data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}"
       id={identifier} width="30" height="30">&nbsp;</canvas>
 
@@ -131,9 +154,10 @@ console.log(newObject);
   }
     #dayContainer {
         display: inline-block;
-        border-top: 1px solid black;
-        border-left: 1px solid black;
-        border-bottom: 1px solid black;
+
+        border-top: 1px dashed orangered;
+        border-left: 1px dashed orangered;
+        border-bottom: 1px dashed orangered;
         
         /* width: 50px;
         height: 50px;
@@ -210,6 +234,11 @@ console.log(newObject);
 
 .bold {
   font-weight: bold;
+}
+
+
+.doodle-btn {
+  /* cursor: pointer; */
 }
 
 </style>
