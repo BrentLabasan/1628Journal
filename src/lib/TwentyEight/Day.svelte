@@ -34,33 +34,7 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
             snd.play();
 
 
-            // - play an extra sound effect upon marking a Day as completed, if it's the earliest time completed so far of that week
 
-            let earliestTimeIn28Completed = null;
-
-            for (let i = 0; i < 28; i++) {
-              debugger;
-
-              let dayInSequence = data.days[ DateTime.fromISO(data.startDate).plus({day: i}).toISODate() ];
-
-              if (dayInSequence.dateTimeCompleted) {
-                console.log(dayInSequence.dateTimeCompleted);
-
-                let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
-
-                if (earliestTimeIn28Completed === null) {
-                  earliestTimeIn28Completed = earliestTimeIn28Completed;
-                  setTimeout(function(){ snd2.play(); }, 1000);
-                  
-                } else {
-                  if (dayInSequence.dateTimeCompleted < earliestTimeIn28Completed) {
-                    setTimeout(function(){ snd2.play(); }, 1000);
-                  }
-                }
-              }
-
-
-            }
 
           // mark in Firebase as completed
           newObject.days[blah].dateTimeCompleted = DateTime.now().toISO();
@@ -72,7 +46,41 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
 
 
 console.log(newObject);
-          docRef.set(newObject);
+          docRef.set(newObject).then(() => {
+    // console.log("Document successfully written!");
+    if (newObject.days[blah].isCompleted) {
+            // - play an extra sound effect upon marking a Day as completed, if it's the earliest time completed so far of that week
+
+            let earliestTimeIn28Completed = null;
+
+            for (let i = 0; i < 28; i++) {
+              debugger;
+
+              let dayInSequence = data.days[ DateTime.fromISO(data.startDate).plus({days: i}).toISODate() ];
+
+              if (dayInSequence.dateTimeCompleted) {
+                console.log(dayInSequence.dateTimeCompleted);
+
+                let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
+
+                if (earliestTimeIn28Completed === null) {
+                  earliestTimeIn28Completed = dayInSequence.dateTimeCompleted;
+                  // setTimeout(function(){ snd2.play(); }, 1000);
+                  
+                } else {
+                  debugger;
+                  // DateTime.fromISO(blah).toLocaleString(DateTime.TIME_24_SIMPLE)
+                  if (
+                    DateTime.fromISO(dayInSequence.dateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) < 
+                    DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE) ) {
+                    earliestTimeIn28Completed = dayInSequence.dateTimeCompleted;
+                    setTimeout(function(){ snd2.play(); }, 1000);
+                  }
+                }
+              }
+            }
+    }
+});
   }
   
   onMount(async () => {

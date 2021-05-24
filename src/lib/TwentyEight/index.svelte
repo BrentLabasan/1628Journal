@@ -58,7 +58,7 @@ function closeDialog() {
 		for (let i = 0; i < 28; i++) {
 			obj[dt.plus({ day: i }).toISODate()] = {
         isCompleted: false,
-        dateTimeCompleted: '',
+        dateTimeCompleted: null,
 			};
 		}
 
