@@ -35,6 +35,9 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
 
 
             // - play an extra sound effect upon marking a Day as completed, if it's the earliest time completed so far of that week
+
+            let earliestTimeIn28Completed = null;
+
             for (let i = 0; i < 28; i++) {
               debugger;
 
@@ -42,6 +45,17 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
 
               if (dayInSequence.dateTimeCompleted) {
                 console.log(dayInSequence.dateTimeCompleted);
+
+                let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
+
+                if (earliestTimeIn28Completed === null) {
+                  earliestTimeIn28Completed = earliestTimeIn28Completed;
+                  snd2.play();
+                } else {
+                  if (dayInSequence.dateTimeCompleted < earliestTimeIn28Completed) {
+                    snd2.play();
+                  }
+                }
               }
 
 
