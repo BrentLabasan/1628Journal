@@ -17,7 +17,7 @@
 
 	docRef
 		.onSnapshot((doc) => {
-			console.log('Current data: ', doc.data());
+			// console.log('Current data: ', doc.data());
 			data = doc.data();
 		});
 

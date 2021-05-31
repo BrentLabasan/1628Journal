@@ -72,7 +72,7 @@ function closeDialog() {
 				// born: 1815
 			})
 			.then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
+        // console.log('Document written with ID: ', docRef.id);
         
 
         db.collection("twentyeights").doc( docRef.id ).update({
@@ -99,12 +99,12 @@ function closeDialog() {
 
     querySnapshot.forEach((twentyEight) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(twentyEight.id, " => ", twentyEight.data());
+        // console.log(twentyEight.id, " => ", twentyEight.data());
         data[twentyEight.id] = twentyEight.data()
     });
 
-    console.log("data", data);
-    console.log(typeof data)
+    // console.log("data", data);
+    // console.log(typeof data)
 });
 
 function filterDataByTag(data, tag) {
@@ -201,6 +201,9 @@ function filterDataByTag(data, tag) {
 
 
 
+
+  <ShowSelected tag="morning routine" db={db} data={filterDataByTag(data, 'morning routine')}>
+  </ShowSelected>
 
   <ShowSelected tag="Alaska Airlines" db={db} data={filterDataByTag(data, 'Alaska Airlines')}>
   </ShowSelected>

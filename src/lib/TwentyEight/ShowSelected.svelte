@@ -57,8 +57,8 @@ import { dataset_dev } from 'svelte/internal';
     
     // newData = data;
     
-    console.log("ShowSelected", tag, data);
-    console.log("ShowSelected", tag, newData);
+    // console.log("ShowSelected", tag, data);
+    // console.log("ShowSelected", tag, newData);
 </script>
 
 <section id="parentContainer">

@@ -12,7 +12,7 @@
 
     function renderDateTimeCompleted() {
       const blah = data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted;
-      console.log("blah", blah);
+      // console.log("blah", blah);
       if (blah && data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted) {
         // return new DateTime(blah).toLocaleString(DateTime.TIME_24_SIMPLE)
 
@@ -45,7 +45,7 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
 
 
 
-console.log(newObject);
+// console.log(newObject);
           docRef.set(newObject).then(() => {
     // console.log("Document successfully written!");
     let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
@@ -61,7 +61,7 @@ console.log(newObject);
               let dayInSequence = data.days[ DateTime.fromISO(data.startDate).plus({days: i}).toISODate() ];
 
               if (dayInSequence.dateTimeCompleted) {
-                console.log(dayInSequence.dateTimeCompleted);
+                // console.log(dayInSequence.dateTimeCompleted);
 
 
                 if (earliestTimeIn28Completed === null) {
@@ -76,8 +76,8 @@ console.log(newObject);
                 }
               }
             }
-            console.log("taco", DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE));
-            console.log("taco", DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE));
+            // console.log("taco", DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE));
+            // console.log("taco", DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE));
             debugger;
             if (
                     DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
@@ -119,7 +119,8 @@ console.log(newObject);
 
 </script>
 
-<section id="dayContainer" on:click={onClick}>
+<section     class:evenWeek="{ weekIndex % 2 === 0}"
+id="dayContainer" on:click={onClick}>
     <!-- { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() }  -->
 
     <div 
@@ -127,16 +128,15 @@ console.log(newObject);
     class:bold="{dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() === DateTime.now().toISODate()}"
     class="animate__animated animate__infinite"
     class:animate__headShake="{dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() === DateTime.now().toISODate() && !data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}"
-    
     >
 
 
-  { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
-  { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).weekdayShort }
+      { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
+      { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).weekdayShort }
 
 
 
-</div>
+    </div>
 <!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
     <!-- {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? "T" : ""} -->
 
@@ -270,5 +270,11 @@ console.log(newObject);
 .doodle-btn {
   /* cursor: pointer; */
 }
+
+.evenWeek {
+  background-color: rgb(216, 216, 216);
+}
+
+
 
 </style>
