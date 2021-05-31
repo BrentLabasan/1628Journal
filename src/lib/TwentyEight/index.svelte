@@ -14,7 +14,7 @@
 
 	// Add the Firebase services that you want to use
 	// import "firebase/auth";
-	import 'firebase/firestore';
+	import 'firebase/firestore/dist/index.node.cjs.js';
 
 	const config = {
 		apiKey: 'AIzaSyCo1_tSUtuq8bmuuGJ01AdvpkdUB4twU-Y',
