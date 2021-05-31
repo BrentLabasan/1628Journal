@@ -30,6 +30,7 @@
     "firebase": "^8.6.1",
     "luxon": "^1.27.0",
     "roughjs": "^4.4.1",
+    "svelte-preprocess": "^4.7.3",
     "wired-elements": "^3.0.0-rc.6"
   },
   "engines": {
