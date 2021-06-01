@@ -9,8 +9,7 @@
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "devDependencies": {
-    "@sveltejs/adapter-netlify": "^1.0.0-next.4",
-    "@sveltejs/adapter-vercel": "next",
+		"@sveltejs/adapter-node": "next",
     "@sveltejs/kit": "next",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
@@ -18,7 +17,8 @@
     "prettier": "~2.2.1",
     "prettier-plugin-svelte": "^2.2.0",
     "rimraf": "^3.0.2",
-    "svelte": "^3.34.0"
+    "svelte": "^3.34.0",
+    "svelte-preprocess": "^4.0.0",
   },
   "type": "module",
   "dependencies": {
@@ -32,8 +32,9 @@
     "firebase": "^8.6.1",
     "luxon": "^1.27.0",
     "roughjs": "^4.4.1",
+    "@sveltejs/adapter-netlify": "^1.0.0-next.4",
     "svelte-preprocess": "^4.7.3",
-    "wired-elements": "^3.0.0-rc.6"
+    "wired-elements": "^3.0.0-rc.6",
   },
   "engines": {
     "node": "^12.20 || ^14.13.1 || >= 16"
