@@ -34,7 +34,7 @@
     "roughjs": "^4.4.1",
     "@sveltejs/adapter-netlify": "^1.0.0-next.4",
     "svelte-preprocess": "^4.7.3",
-    "wired-elements": "^3.0.0-rc.6",
+    "wired-elements": "^3.0.0-rc.6"
   },
   "engines": {
     "node": "^12.20 || ^14.13.1 || >= 16"
