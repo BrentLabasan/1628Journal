@@ -1,7 +1,7 @@
 {
   "name": "~TODO~",
   "version": "0.0.1",
-"scripts": {
+  "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
@@ -9,7 +9,7 @@
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "devDependencies": {
-		"@sveltejs/adapter-node": "next",
+    "@sveltejs/adapter-node": "next",
     "@sveltejs/kit": "next",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
@@ -26,13 +26,14 @@
     "@github/details-dialog-element": "^3.1.2",
     "@lukeed/uuid": "^2.0.0",
     "@material/mwc-button": "^0.21.0",
+    "@sveltejs/adapter-netlify": "^1.0.0-next.4",
+    "@sveltejs/adapter-vercel": "next",
     "@webcomponents/webcomponentsjs": "^2.5.0",
     "animate.css": "^4.1.1",
     "cookie": "^0.4.1",
     "firebase": "^8.6.1",
     "luxon": "^1.27.0",
     "roughjs": "^4.4.1",
-    "@sveltejs/adapter-netlify": "^1.0.0-next.4",
     "svelte-preprocess": "^4.7.3",
     "wired-elements": "^3.0.0-rc.6"
   },
