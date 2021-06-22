@@ -3,7 +3,8 @@
 <script>
 	import Week from './Week.svelte';
 	import { DateTime } from 'luxon';
-	
+  import {openDialog, closeDialog} from './sharedCommands';
+
     export let db, entireCollection, key ;
 
 
@@ -19,7 +20,8 @@
 		.onSnapshot((doc) => {
 			// console.log('Current data: ', doc.data());
 			data = doc.data();
-		});
+    });
+  
 
 </script>
 
@@ -44,7 +46,13 @@
   </div> -->
 
   <section class="twentyEight_name">
-	{data.name}
+  {data.name}
+  <span>
+    <i class="fa fa-bars" on:click={openDialog}></i>
+  </span>
+
+
+
   </section>
 
 	{#each Array(timesToBeRendered) as _, index}

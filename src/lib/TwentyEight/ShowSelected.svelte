@@ -8,16 +8,19 @@ import { dataset_dev } from 'svelte/internal';
 
     // 28s that are uncompleted for today are displayed before 28s that have been completed
 
-    let newData = [], unsortedComplete = [], unsortedIncomplete = [];
+    let newData = [], unsortedComplete = [], unsortedIncomplete = [], completed28 = [];
 
     data = Object.entries(data).sort((a, b) => { 
         return a[1].name > b[1].name ? 1 : -1;
     });
 
     data.map((x) => {
-        if (x[1].days[DateTime.now().toISODate()].isCompleted) {
+        // TODO if for some reason I allow ppl to create a 28 that has a start date in future, this will not be fully right
+        if ( !x[1].days[DateTime.now().toISODate()] ) {
+            completed28.push(x);
+        } else if (x[1].days[DateTime.now().toISODate()].isCompleted) {
             unsortedComplete.push(x);
-} else {
+        } else {
             unsortedIncomplete.push(x);
 
         }
@@ -53,7 +56,7 @@ import { dataset_dev } from 'svelte/internal';
 
     
 
-    newData = unsortedIncomplete.concat(unsortedComplete);
+    newData = unsortedIncomplete.concat(unsortedComplete).concat(completed28);
     
     // newData = data;
     

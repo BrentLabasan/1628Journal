@@ -3,6 +3,21 @@
 	import ShowByTag from './ShowByTag.svelte';
 	import ShowSelected from './ShowSelected.svelte';
   import { DateTime } from 'luxon';
+
+  import {openDialog, closeDialog} from './sharedCommands';
+
+  // import '@material/mwc-button';
+  // import './node_modules/@material/mwc-button/mwc-button.js';
+  // import '.\node_modules\@material\mwc-button\mwc-button.js';
+
+  // import { vaadin-dialog as VaadinDialog } from '@vaadin/vaadin-dialog/vaadin-dialog.js';
+  // import  VaadinDialog from '@vaadin/vaadin-dialog/vaadin-dialog.js';
+
+  // const dialog = document.querySelector('vaadin-dialog');
+  // dialog.renderer = function(root, dialog) {
+  //   root.textContent = 'Sample dialog';
+  // };
+
   // import '@github/details-dialog-element';
   // import '../../../node_modules/@material/mwc-button/mwc-button.js';
 
@@ -29,14 +44,30 @@
 	// Initialize Firebase
 	!firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
-	var db = firebase.firestore();
+  var db = firebase.firestore();
+  
+  function adminFunction() {
+    // alert("adminFunction()");
 
-function openDialog() {
-  document.querySelector('wired-dialog').setAttribute('open', '');
-}
-function closeDialog() {
-  document.querySelector('wired-dialog').removeAttribute('open');
-}
+
+    // Firebase v8
+  db.collection("twentyeights").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+
+          let twenRef = db.collection('twentyeights').doc(doc.id);
+
+          twenRef.set({
+              habitId: "test"
+          }, { merge: true });
+      });
+  });
+
+
+  }
+
+
 
 	function onClick_addHabit() {
     // alert('index onClick_addHabit()')
@@ -127,9 +158,25 @@ function filterDataByTag(data, tag) {
 
   return newObject;
 }
+
+  // onMount(async () => {
+
+  //   const dia = document.createElement("vaadin-dialog");
+  //   document.querySelector('dialogHolder').appendChild(dia);
+  //   dia.setAttribute('opened');
+
+  // });
+
 </script>
 
 <section>
+
+
+
+  <div id="dialogHolder">dialog holder</div>
+
+  <!-- <VaadinDialog opened></VaadinDialog> -->
+
   <!-- <mwc-button on:click={onClick_addHabit} id="myButton" label="+ TWENTYEIGHT" raised></mwc-button> -->
 
   <!-- <mwcButton on:click={onClick_addHabit} id="myButton" label="+ TWENTYEIGHT" raised></mwcButton> -->
@@ -234,6 +281,10 @@ function filterDataByTag(data, tag) {
 
 
   {/if}
+
+  <button on:click={adminFunction}>
+    ADMIN
+  </button>
 
 
   
