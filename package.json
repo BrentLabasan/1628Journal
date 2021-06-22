@@ -33,6 +33,7 @@
     "@webcomponents/webcomponentsjs": "^2.5.0",
     "animate.css": "^4.1.1",
     "cookie": "^0.4.1",
+    "crypto-random-string": "^4.0.0",
     "firebase": "^8.6.1",
     "font-awesome": "^4.7.0",
     "luxon": "^1.27.0",

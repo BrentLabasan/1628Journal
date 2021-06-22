@@ -6,6 +6,11 @@
 
   import {openDialog, closeDialog} from './sharedCommands';
 
+  // var randomstring = require("randomstring");
+  // import  randomstring from "randomstring";
+  // import cryptoRandomString from 'crypto-random-string';
+  // all not working
+
   // import '@material/mwc-button';
   // import './node_modules/@material/mwc-button/mwc-button.js';
   // import '.\node_modules\@material\mwc-button\mwc-button.js';
@@ -59,7 +64,7 @@
           let twenRef = db.collection('twentyeights').doc(doc.id);
 
           twenRef.set({
-              habitId: "test"
+              habitId: Array.from(Array(20), () => Math.floor(Math.random() * 36).toString(36)).join('')
           }, { merge: true });
       });
   });
