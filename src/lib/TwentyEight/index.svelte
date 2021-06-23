@@ -95,7 +95,57 @@
               }
             )
             .then(() => {
-                console.log("Document successfully written!");
+                console.log("SUCCESSFUL: put it in archive > habitId > 28id");
+
+
+
+                 // - make a new 28 starting at the current date
+
+                  let obj = {};
+                  
+                  // DateTime.now().toISODate()
+                  const dt = DateTime.now();
+
+                  for (let i = 0; i < 28; i++) {
+                    obj[dt.plus({ day: i }).toISODate()] = {
+                      isCompleted: false,
+                      dateTimeCompleted: null,
+                    };
+                  }
+
+                  db.collection('twentyeights')
+                    .add({
+                      startDate: DateTime.now().toISODate(), // todo might change
+                      days: obj,
+                      name: doc.data().name,
+                      tags: doc.data().tags
+                    })
+                    .then((docRef) => {
+                      // console.log('Document written with ID: ', docRef.id);
+                      
+                      db.collection("twentyeights").doc( docRef.id ).update({
+                          id: docRef.id
+                      })
+
+                      // - delete it from the current 28s
+                      db.collection("twentyeights").doc(doc.data().id).delete().then(() => {
+                          console.log(`Document ${doc.data().id} successfully removed from current 28s because it was archived.`);
+                      }).catch((error) => {
+                          console.error("Error removing document: ", error);
+                      });
+
+                    })
+                    .catch((error) => {
+                      console.error('Error adding document: ', error);
+                    });
+
+
+
+
+
+
+
+
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);
@@ -112,9 +162,7 @@
 
 
 
-    // - delete it from the current 28s
 
-    // - make a new 28 starting at the current date
   }
 
 	function onClick_addHabit() {
@@ -147,13 +195,10 @@
         days: obj,
         name: document.querySelector('[name=habitName]').value,
         tags: tagsArray
-				// last: 'Lovelace',
-				// born: 1815
 			})
 			.then((docRef) => {
         // console.log('Document written with ID: ', docRef.id);
         
-
         db.collection("twentyeights").doc( docRef.id ).update({
             id: docRef.id
         })
@@ -161,6 +206,7 @@
 			.catch((error) => {
 				console.error('Error adding document: ', error);
       });
+
       document.querySelector('[name=habitName]').value = null;
       document.querySelector('[name=tags]').value = null;
 
