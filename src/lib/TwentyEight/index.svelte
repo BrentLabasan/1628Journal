@@ -6,6 +6,8 @@
 
   import {openDialog, closeDialog} from './sharedCommands';
 
+
+ 
   // var randomstring = require("randomstring");
   // import  randomstring from "randomstring";
   // import cryptoRandomString from 'crypto-random-string';
@@ -51,28 +53,26 @@
 
   var db = firebase.firestore();
   
-  function adminFunction() {
-    // alert("adminFunction()");
-
-
+  // each twen was updated to have a random 20 length alphanumeric
+  function updateAFieldOfAllActiveHabits() {
     // Firebase v8
-  db.collection("twentyeights").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
+    db.collection("twentyeights").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
 
-          let twenRef = db.collection('twentyeights').doc(doc.id);
+            let twenRef = db.collection('twentyeights').doc(doc.id);
 
-          twenRef.set({
-              habitId: Array.from(Array(20), () => Math.floor(Math.random() * 36).toString(36)).join('')
-          }, { merge: true });
-      });
-  });
-
-
+            twenRef.set({
+                habitId: Array.from(Array(20), () => Math.floor(Math.random() * 36).toString(36)).join('')
+            }, { merge: true });
+        });
+    });
   }
 
-
+  function archiveAndCreateNewTwen() {
+    alert("archiveAndCreateNewTwen")
+  }
 
 	function onClick_addHabit() {
     // alert('index onClick_addHabit()')
@@ -172,6 +172,8 @@ function filterDataByTag(data, tag) {
 
   // });
 
+  // let twenIdToActUpon = null;
+
 </script>
 
 <section>
@@ -190,11 +192,9 @@ function filterDataByTag(data, tag) {
   <wired-button on:click={openDialog}>open dialog</wired-button>
 
   <wired-dialog>
-    <p>
-      Dialog content here
-    </p>
-    <div style="text-align: right; padding: 30px 16px 16px;">
-      <wired-button id="closeDialog" on:click={closeDialog}>Close dialog</wired-button>
+    <div id="wiredDialogInnerContainer">
+      <button on:click={archiveAndCreateNewTwen}>archiveAndCreateNewTwen()</button>
+
     </div>
   </wired-dialog>
 
@@ -287,10 +287,9 @@ function filterDataByTag(data, tag) {
 
   {/if}
 
-  <button on:click={adminFunction}>
+  <button on:click={updateAFieldOfAllActiveHabits}>
     ADMIN
   </button>
-
 
   
 </section>
@@ -298,5 +297,10 @@ function filterDataByTag(data, tag) {
 <style>
   [name="tags"] {
     width: 400px;
+  }
+
+  #wiredDialogInnerContainer {
+    /* width: 960px; */
+    padding: 40px;
   }
 </style>

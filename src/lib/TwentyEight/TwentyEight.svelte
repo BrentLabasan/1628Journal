@@ -5,6 +5,9 @@
 	import { DateTime } from 'luxon';
   import {openDialog, closeDialog} from './sharedCommands';
 
+  import { twenIdToActUpon } from './stores.js';
+  import SetTwenIdToActUpon from './SetTwenIdToActUpon.svelte';
+
     export let db, entireCollection, key ;
 
 
@@ -48,7 +51,9 @@
   <section class="twentyEight_name">
   {data.name}
   <span>
-    <i class="fa fa-bars" on:click={openDialog}></i>
+    <!-- <i class="fa fa-bars" on:click={openDialog}></i> -->
+
+    <SetTwenIdToActUpon/>
   </span>
 
 
@@ -65,6 +70,8 @@
 </section>
 
 <style>
+
+
 	#container_info {
 		display: flex;
 		justify-content: space-between;
