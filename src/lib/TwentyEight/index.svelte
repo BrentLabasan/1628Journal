@@ -77,7 +77,44 @@
   }
 
   function archiveAndCreateNewTwen() {
-    alert("archiveAndCreateNewTwen")
+    // alert("archiveAndCreateNewTwen " + twenIdToActUpon_value);
+    
+    // - get data of 28 to archive
+
+    var docRef = db.collection("twentyeights").doc(twenIdToActUpon_value);
+
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("28 data:", doc.data());
+
+            // - put it in archive > habitId > 28id
+
+            db.collection("archive").doc(doc.data().habitId).set(
+              {
+                [doc.data().id]: doc.data()
+              }
+            )
+            .then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+
+
+
+
+    // - delete it from the current 28s
+
+    // - make a new 28 starting at the current date
   }
 
 	function onClick_addHabit() {

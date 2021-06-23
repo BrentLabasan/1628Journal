@@ -5,7 +5,7 @@
     export let key;
 
 	function increment() {
-        alert(key);
+        console.log("setting the 28 to act upon");
         twenIdToActUpon.update(n => key);
 
         openDialog();
