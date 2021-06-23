@@ -53,7 +53,7 @@
   <span>
     <!-- <i class="fa fa-bars" on:click={openDialog}></i> -->
 
-    <SetTwenIdToActUpon/>
+  <SetTwenIdToActUpon key={key} />
   </span>
 
 

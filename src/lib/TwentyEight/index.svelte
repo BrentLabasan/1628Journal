@@ -6,6 +6,12 @@
 
   import {openDialog, closeDialog} from './sharedCommands';
 
+  import { twenIdToActUpon } from './stores.js';
+
+  let twenIdToActUpon_value;
+  twenIdToActUpon.subscribe(value => {
+		twenIdToActUpon_value = value;
+	});
 
  
   // var randomstring = require("randomstring");
@@ -178,7 +184,7 @@ function filterDataByTag(data, tag) {
 
 <section>
 
-
+  The twenId we're acting on is: {twenIdToActUpon_value}
 
   <div id="dialogHolder">dialog holder</div>
 
@@ -193,7 +199,7 @@ function filterDataByTag(data, tag) {
 
   <wired-dialog>
     <div id="wiredDialogInnerContainer">
-      <button on:click={archiveAndCreateNewTwen}>archiveAndCreateNewTwen()</button>
+      <button on:click={archiveAndCreateNewTwen}>archiveAndCreateNewTwen() {twenIdToActUpon_value}</button>
 
     </div>
   </wired-dialog>

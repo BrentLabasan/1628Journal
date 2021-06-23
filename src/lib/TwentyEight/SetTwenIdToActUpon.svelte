@@ -2,12 +2,16 @@
 	import { twenIdToActUpon } from './stores.js';
     import {openDialog, closeDialog} from './sharedCommands';
 
+    export let key;
+
 	function increment() {
+        alert(key);
+        twenIdToActUpon.update(n => key);
+
         openDialog();
-		// twenIdToActUpon.update(n => n + 1);
 	}
 </script>
 
 <button on:click={increment}>
-	click this to set twenId that's being acted upon
+	click to set target twenId {key}
 </button>
