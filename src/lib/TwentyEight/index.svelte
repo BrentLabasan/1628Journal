@@ -282,8 +282,11 @@ function filterDataByTag(data, tag) {
 
   <wired-dialog>
     <div id="wiredDialogInnerContainer">
+      {twenIdToActUpon_value}
+      <br/><br/>
       <button on:click={closeDialog}>X</button>
-      <button on:click={archiveAndCreateNewTwen}>archiveAndCreateNewTwen() {twenIdToActUpon_value}</button>
+      <br/><br/>
+      <button on:click={archiveAndCreateNewTwen}>archiveAndCreateNewTwen() </button>
 
     </div>
   </wired-dialog>

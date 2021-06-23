@@ -13,5 +13,6 @@
 </script>
 
 <button on:click={increment}>
-	click to set target twenId {key}
+    <!-- click to set target twenId {key} -->
+    <i class="fa fa-bars" on:click={openDialog}></i>
 </button>
