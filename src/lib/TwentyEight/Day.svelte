@@ -5,6 +5,9 @@
     import rough from 'roughjs';
     import { onMount } from 'svelte';
     // import 'animate.css';
+
+import confirm from "./sound-effects/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.mp3"
+import bell from "./sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3";
     export let docRef, data, dateTime, weekIndex, dayIndex;
     // console.log(data, dateTime, weekIndex, dayIndex);
 
@@ -30,7 +33,7 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
           const newObject = Object.assign({}, data )
           newObject.days[blah].isCompleted = !newObject.days[blah].isCompleted;
           if (newObject.days[blah].isCompleted) {
-            var snd = new Audio("../../../sound-effects/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.mp3"); // buffers automatically when created
+            var snd = new Audio(confirm); // buffers automatically when created
             snd.play();
 
 
@@ -48,8 +51,9 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
 // console.log(newObject);
           docRef.set(newObject).then(() => {
     // console.log("Document successfully written!");
-    let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
-
+    // let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
+    let snd2 = new Audio(bell); // buffers automatically when created
+            
     if (newObject.days[blah].isCompleted) {
             // - play an extra sound effect upon marking a Day as completed, if it's the earliest time completed so far of that week
 
@@ -78,7 +82,7 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
             }
             // console.log("taco", DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE));
             // console.log("taco", DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE));
-            debugger;
+            // debugger;
             if (
                     DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
                     ===
