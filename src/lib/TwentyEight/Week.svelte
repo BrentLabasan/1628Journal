@@ -2,7 +2,7 @@
 	import Day from './Day.svelte';
 	import { DateTime } from 'luxon';
     import rough from 'roughjs';
-
+	import { onMount } from 'svelte';
 	const timesToBeRendered = 7;
 	export let docRef, data, firstDayDateTime, weekIndex;
 	// console.log('Week firstDayDateTime', firstDayDateTime);
@@ -38,17 +38,26 @@
 
 		console.log(`countDaysCompleted ${countDaysCompleted}`);
 
+		const target = document.getElementById(`forLine-${data.id}-${weekIndex}-${rangeStart}`)
+		const rc2 = rough.canvas(target);
+
 		if (countDaysCompleted >= 4) {
 			// alert("4 or more days completed !!");
 			console.log(`4 or more! rangeStart ${rangeStart} rangeEnd ${rangeEnd}`);
-			debugger
-			const target = document.getElementById(`forLine-${data.id}-${weekIndex}-${rangeStart}`)
-			const rc2 = rough.canvas(target);
+			// debugger
+
 			// rc2.line(0, 0, 20, 0);
-			rc2.line(0, 0, 30 * (rangeEnd - rangeStart), 0,  {strokeWidth: 5});
+			rc2.line(0, 0, 90 * (rangeEnd - rangeStart), 0,  {strokeWidth: 5});
+			// rc2.line(0, 0, 400, 0,  {strokeWidth: 5});
+		} else {
+			rc2.line(0, 0, 0, 0);
 		}
 	}
 
+	onMount(async () => {
+		handleLineRender();
+
+	});
 
 
 </script>
