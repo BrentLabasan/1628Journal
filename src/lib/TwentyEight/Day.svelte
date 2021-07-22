@@ -163,9 +163,14 @@ id="dayContainer" on:click={onClick}>
       </svg> -->
 
       <canvas 
+      date={dateTime.toISODate()}
       class="doodle-btn"
       class:hidden="{!data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}"
       id={identifier} width="30" height="30">&nbsp;</canvas>
+
+      <canvas style="position: absolute;" id={`forLine-${identifier}`} width="400" height="10">
+        &nbsp;
+      </canvas>
 
       <!-- <svg id="svg"></svg> -->
       <!-- <span id="target">a</span> -->

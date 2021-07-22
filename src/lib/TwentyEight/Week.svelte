@@ -18,9 +18,9 @@
 		for (i = 0; i < 7; i++) {
 			if (data.days[DateTime.fromISO(data.startDate).plus({day: i + 7 * weekIndex}).toISODate()].isCompleted) {
 				countDaysCompleted++;
-				debugger
+				// debugger
 				if (rangeStart === null) {
-					debugger;
+					// debugger;
 					rangeStart = i;
 				}
 
@@ -41,6 +41,11 @@
 		if (countDaysCompleted >= 4) {
 			// alert("4 or more days completed !!");
 			console.log(`4 or more! rangeStart ${rangeStart} rangeEnd ${rangeEnd}`);
+			debugger
+			const target = document.getElementById(`forLine-${data.id}-${weekIndex}-${rangeStart}`)
+			const rc2 = rough.canvas(target);
+			// rc2.line(0, 0, 20, 0);
+			rc2.line(0, 0, 30 * (rangeEnd - rangeStart), 0,  {strokeWidth: 5});
 		}
 	}
 
