@@ -41,9 +41,7 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
             var snd = new Audio(confirm); // buffers automatically when created
             snd.play();
 
-            dispatch('linerender', {
-			text: 'Hello!'
-		});
+
 
 
           // mark in Firebase as completed
@@ -52,7 +50,9 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
             newObject.days[blah].dateTimeCompleted = null;
           }
 
-
+          dispatch('linerender', {
+            text: 'Hello!'
+          });
 
 
 // console.log(newObject);
