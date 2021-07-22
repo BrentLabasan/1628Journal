@@ -45,13 +45,14 @@
 			// alert("4 or more days completed !!");
 			console.log(`4 or more! rangeStart ${rangeStart} rangeEnd ${rangeEnd}`);
 			// debugger
+			target.style.visibility = "visible"
 
 			// rc2.line(0, 0, 20, 0);
-			rc2.line(0, 0, 85 * (rangeEnd - rangeStart), 0,  {strokeWidth: 7});
+			rc2.line(0, 0, 85 * (rangeEnd - rangeStart), 0,  {strokeWidth: 7, roughness: 0});
 			// rc2.line(0, 0, 400, 0,  {strokeWidth: 5});
 		} else {
-			rc2.line(0, 0, 0, 0);
-		}
+			target.style.visibility = "hidden"
+		};
 	}
 
 	onMount(async () => {
