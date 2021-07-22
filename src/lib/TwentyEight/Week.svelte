@@ -6,6 +6,10 @@
 	export let docRef, data, firstDayDateTime, weekIndex;
 	// console.log('Week firstDayDateTime', firstDayDateTime);
 	// console.log('Week data', data);
+
+	function handleLineRender(event) {
+		alert(event.detail.text);
+	}
 </script>
 
 <section>
@@ -17,7 +21,7 @@
 
 	{#each Array(timesToBeRendered) as _, index}
 		<!-- <Day dateTime={firstDayDateTime + index + (7 * weekIndex)} /> -->
-<Day docRef={docRef} data={data} dateTime={firstDayDateTime} {weekIndex} dayIndex={index} />
+<Day on:linerender={handleLineRender} docRef={docRef} data={data} dateTime={firstDayDateTime} {weekIndex} dayIndex={index} />
     {/each}
     
     

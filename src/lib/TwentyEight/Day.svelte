@@ -5,6 +5,11 @@
     import rough from 'roughjs';
     import { onMount } from 'svelte';
     // import 'animate.css';
+    import { createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
+
+
 
 import confirm from "./sound-effects/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.mp3"
 import bell from "./sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3";
@@ -36,7 +41,9 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
             var snd = new Audio(confirm); // buffers automatically when created
             snd.play();
 
-
+            dispatch('linerender', {
+			text: 'Hello!'
+		});
 
 
           // mark in Firebase as completed
@@ -50,10 +57,15 @@ const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
 
 // console.log(newObject);
           docRef.set(newObject).then(() => {
+
+            // drawing line
+
     // console.log("Document successfully written!");
     // let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
     let snd2 = new Audio(bell); // buffers automatically when created
-            
+       
+    
+    // sound effect logic
     if (newObject.days[blah].isCompleted) {
             // - play an extra sound effect upon marking a Day as completed, if it's the earliest time completed so far of that week
 
