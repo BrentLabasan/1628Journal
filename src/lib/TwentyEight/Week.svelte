@@ -8,8 +8,22 @@
 	// console.log('Week data', data);
 
 	function handleLineRender(event) {
-		alert(event.detail.text);
+		// alert(event.detail.text);
+
+		let countDaysCompleted = 0;
+		for (let i = 0; i < 7; i++) {
+			if (data.days[DateTime.fromISO(data.startDate).plus({day: i}).toISODate()].isCompleted) {
+				countDaysCompleted++;
+			}	
+		}
+
+		if (countDaysCompleted >= 4) {
+			alert("4 or more days completed !!");
+		}
 	}
+
+
+
 </script>
 
 <section>
