@@ -266,12 +266,15 @@ function filterDataByTag(data, tag) {
 
   const tagsDefault = ['morning routine', 'Alaska Airlines', 'stretches', 'Fabricator Studio', 'daily reading', 'relationships', 'test']
 
-  let urlTags = null;
+  let urlTags = null, arrayTags = null;
   if (browser) { // https://kit.svelte.dev/faq
 	  var url_string = window.location.href
     var url = new URL(url_string);
     urlTags = url.searchParams.get("tags");
     console.log(urlTags);
+    if (urlTags) {
+      arrayTags = urlTags.split(',')
+    }
   }
 
 
@@ -359,7 +362,10 @@ function filterDataByTag(data, tag) {
 
 
   {#if urlTags}
-    <div>urlTags!</div>
+    {#each arrayTags as tag, i}
+      <ShowSelected tag="{tag}" db={db} data={filterDataByTag(data, tag)}>
+      </ShowSelected>
+    {/each}
   {:else}
 
     {#each tagsDefault as tag, i}
