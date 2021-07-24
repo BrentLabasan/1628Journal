@@ -361,26 +361,12 @@ function filterDataByTag(data, tag) {
   {#if urlTags}
     <div>urlTags!</div>
   {:else}
-    <ShowSelected tag="morning routine" db={db} data={filterDataByTag(data, 'morning routine')}>
-    </ShowSelected>
 
-    <ShowSelected tag="Alaska Airlines" db={db} data={filterDataByTag(data, 'Alaska Airlines')}>
-    </ShowSelected>
+    {#each tagsDefault as tag, i}
+      <ShowSelected tag="{tag}" db={db} data={filterDataByTag(data, tag)}>
+      </ShowSelected>
+    {/each}
 
-    <ShowSelected tag="stretches" db={db} data={filterDataByTag(data, 'stretches')}>
-    </ShowSelected>
-
-    <ShowSelected tag="Fabricator Studio" db={db} data={filterDataByTag(data, 'Fabricator Studio')}>
-    </ShowSelected>
-
-    <ShowSelected tag="daily reading" db={db} data={filterDataByTag(data, 'daily reading')}>
-    </ShowSelected>
-
-    <ShowSelected tag="relationships" db={db} data={filterDataByTag(data, 'relationships')}>
-    </ShowSelected>
-
-    <ShowSelected tag="test" db={db} data={filterDataByTag(data, 'test')}>
-    </ShowSelected>
   {/if}
 
 
