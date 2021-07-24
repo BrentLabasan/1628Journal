@@ -3,6 +3,7 @@
 	import ShowByTag from './ShowByTag.svelte';
 	import ShowSelected from './ShowSelected.svelte';
   import { DateTime } from 'luxon';
+  import { browser } from '$app/env';
 
   import {openDialog, closeDialog} from './sharedCommands';
 
@@ -263,6 +264,18 @@ function filterDataByTag(data, tag) {
 
   // let twenIdToActUpon = null;
 
+  const tagsDefault = ['morning routine', 'Alaska Airlines', 'stretches', 'Fabricator Studio', 'daily reading', 'relationships', 'test']
+
+  let urlTags = null;
+  if (browser) { // https://kit.svelte.dev/faq
+	  var url_string = window.location.href
+    var url = new URL(url_string);
+    urlTags = url.searchParams.get("tags");
+    console.log(urlTags);
+  }
+
+
+
 </script>
 
 <section>
@@ -345,28 +358,33 @@ function filterDataByTag(data, tag) {
   </ShowByTag> -->
 
 
+  {#if urlTags}
+    <div>urlTags!</div>
+  {:else}
+    <ShowSelected tag="morning routine" db={db} data={filterDataByTag(data, 'morning routine')}>
+    </ShowSelected>
+
+    <ShowSelected tag="Alaska Airlines" db={db} data={filterDataByTag(data, 'Alaska Airlines')}>
+    </ShowSelected>
+
+    <ShowSelected tag="stretches" db={db} data={filterDataByTag(data, 'stretches')}>
+    </ShowSelected>
+
+    <ShowSelected tag="Fabricator Studio" db={db} data={filterDataByTag(data, 'Fabricator Studio')}>
+    </ShowSelected>
+
+    <ShowSelected tag="daily reading" db={db} data={filterDataByTag(data, 'daily reading')}>
+    </ShowSelected>
+
+    <ShowSelected tag="relationships" db={db} data={filterDataByTag(data, 'relationships')}>
+    </ShowSelected>
+
+    <ShowSelected tag="test" db={db} data={filterDataByTag(data, 'test')}>
+    </ShowSelected>
+  {/if}
 
 
-  <ShowSelected tag="morning routine" db={db} data={filterDataByTag(data, 'morning routine')}>
-  </ShowSelected>
 
-  <ShowSelected tag="Alaska Airlines" db={db} data={filterDataByTag(data, 'Alaska Airlines')}>
-  </ShowSelected>
-
-  <ShowSelected tag="stretches" db={db} data={filterDataByTag(data, 'stretches')}>
-  </ShowSelected>
-
-  <ShowSelected tag="Fabricator Studio" db={db} data={filterDataByTag(data, 'Fabricator Studio')}>
-  </ShowSelected>
-
-  <ShowSelected tag="daily reading" db={db} data={filterDataByTag(data, 'daily reading')}>
-  </ShowSelected>
-
-  <ShowSelected tag="relationships" db={db} data={filterDataByTag(data, 'relationships')}>
-  </ShowSelected>
-
-  <ShowSelected tag="test" db={db} data={filterDataByTag(data, 'test')}>
-  </ShowSelected>
 
 
 

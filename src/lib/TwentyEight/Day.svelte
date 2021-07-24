@@ -168,7 +168,7 @@ id="dayContainer" on:click={onClick}>
       class:hidden="{!data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}"
       id={identifier} width="30" height="30">&nbsp;</canvas>
 
-      <canvas style="position: absolute; margin-top: 10px; margin-left: -20px;" id={`forLine-${identifier}`} width="500" height="10">
+      <canvas style="pointer-events: none; position: absolute; margin-top: 10px; margin-left: -20px;" id={`forLine-${identifier}`} width="500" height="10">
         &nbsp;
       </canvas>
 
