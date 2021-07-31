@@ -13,98 +13,138 @@
 
 import confirm from "./sound-effects/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.mp3"
 import bell from "./sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3";
-    export let docRef, data, dateTime, weekIndex, dayIndex;
-    // console.log(data, dateTime, weekIndex, dayIndex);
+import granted from "./sound-effects/audioblocks-new-ability-granted-achieve-level-up-skill-learn-achieve-level-up-skill-learn_BZQXL_dXFvI_NWM.mp3";
+export let docRef, data, dateTime, weekIndex, dayIndex;
+// console.log(data, dateTime, weekIndex, dayIndex);
 
-    const identifier = `${data.id}-${weekIndex}-${dayIndex}`
+const identifier = `${data.id}-${weekIndex}-${dayIndex}`
 
-    function renderDateTimeCompleted() {
-      const blah = data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted;
-      // console.log("blah", blah);
-      if (blah && data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted) {
-        // return new DateTime(blah).toLocaleString(DateTime.TIME_24_SIMPLE)
+function renderDateTimeCompleted() {
+  const blah = data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted;
+  // console.log("blah", blah);
+  if (blah && data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted) {
+    // return new DateTime(blah).toLocaleString(DateTime.TIME_24_SIMPLE)
 
-        // return blah;
-        return DateTime.fromISO(blah).toLocaleString(DateTime.TIME_24_SIMPLE)
-      } else {
-        return '';
+    // return blah;
+    return DateTime.fromISO(blah).toLocaleString(DateTime.TIME_24_SIMPLE)
+  } else {
+    return '';
+  }
+}
+
+function onClick() {
+  // alert('Day onClick()')
+  const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
+  // console.log(blah);
+  const newObject = Object.assign({}, data )
+  newObject.days[blah].isCompleted = !newObject.days[blah].isCompleted;
+
+  if (newObject.days[blah].isCompleted) {
+    var snd = new Audio(confirm); // buffers automatically when created
+    snd.play();
+    // mark in Firebase as completed
+    newObject.days[blah].dateTimeCompleted = DateTime.now().toISO();
+    console.log("Day is pending to be written as completed.");
+  } else {
+    newObject.days[blah].dateTimeCompleted = null;
+    console.log("Day is pending to be written as NOT completed.");
+  }
+
+  dispatch('linerender', {
+    text: 'Hello!'
+  });
+
+
+  // console.log(newObject);
+  docRef.set(newObject).then(() => {
+    console.log("Day's status successfully written!");
+    // let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
+    
+
+
+
+    const arrArr = [
+      "3:00",
+      "6:00",
+      "9:00",
+      "12:00",
+      "15:00",
+      "18:00",
+      "21:00",
+      "24:00",
+    ];
+
+    if (newObject.days[blah].isCompleted) {
+      // debugger;
+
+      // if task was completed before OR during its target period
+      if ( DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
+           <
+            arrArr[data.period8]
+      ) {
+        let snd2 = new Audio(bell); // buffers automatically when created
+        setTimeout(function(){ snd2.play(); }, 1000);
+
+        if ( DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
+           <
+            arrArr[data.period8 - 1]
+           ) {
+            let snd3 = new Audio(granted); // buffers automatically when created
+            setTimeout(function(){ snd3.play(); }, 1000);
+           }
       }
     }
 
-    function onClick() {
-        // alert('Day onClick()')
-const blah = dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
-// console.log(blah);
-          const newObject = Object.assign({}, data )
-          newObject.days[blah].isCompleted = !newObject.days[blah].isCompleted;
-          if (newObject.days[blah].isCompleted) {
-            var snd = new Audio(confirm); // buffers automatically when created
-            snd.play();
-
-
-
-
-          // mark in Firebase as completed
-          newObject.days[blah].dateTimeCompleted = DateTime.now().toISO();
-          } else {
-            newObject.days[blah].dateTimeCompleted = null;
-          }
-
-          dispatch('linerender', {
-            text: 'Hello!'
-          });
-
-
-// console.log(newObject);
-          docRef.set(newObject).then(() => {
-
-            // drawing line
-
-    // console.log("Document successfully written!");
-    // let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
+    /*
+    // BEGIN code for unique sound if task that was completed is the earliest it was ever completed in 28
     let snd2 = new Audio(bell); // buffers automatically when created
-       
-    
     // sound effect logic
     if (newObject.days[blah].isCompleted) {
-            // - play an extra sound effect upon marking a Day as completed, if it's the earliest time completed so far of that week
 
-            let earliestTimeIn28Completed = null;
+      // - play an extra sound effect upon marking a Day as completed, if it's the earliest time completed so far of that week
 
-            for (let i = 0; i < 28; i++) {
-              // debugger;
+      let earliestTimeIn28Completed = null;
 
-              let dayInSequence = data.days[ DateTime.fromISO(data.startDate).plus({days: i}).toISODate() ];
+      for (let i = 0; i < 28; i++) {
+        // debugger;
 
-              if (dayInSequence.dateTimeCompleted) {
-                // console.log(dayInSequence.dateTimeCompleted);
+        let dayInSequence = data.days[ DateTime.fromISO(data.startDate).plus({days: i}).toISODate() ];
+
+        if (dayInSequence.dateTimeCompleted) {
+          // console.log(dayInSequence.dateTimeCompleted);
 
 
-                if (earliestTimeIn28Completed === null) {
-                  earliestTimeIn28Completed = dayInSequence.dateTimeCompleted;
-                  // setTimeout(function(){ snd2.play(); }, 1000);
-                } else {
-                  if (
-                    DateTime.fromISO(dayInSequence.dateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) < 
-                    DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE) ) {
-                    earliestTimeIn28Completed = dayInSequence.dateTimeCompleted;
-                  }
-                }
-              }
-            }
-            // console.log("taco", DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE));
-            // console.log("taco", DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE));
-            // debugger;
+          if (earliestTimeIn28Completed === null) {
+            earliestTimeIn28Completed = dayInSequence.dateTimeCompleted;
+            // setTimeout(function(){ snd2.play(); }, 1000);
+          } else {
             if (
-                    DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
-                    ===
-                    DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE) ) {
-                    // earliestTimeIn28Completed = dayInSequence.dateTimeCompleted;
-                    setTimeout(function(){ snd2.play(); }, 1000);
-                  }
+              DateTime.fromISO(dayInSequence.dateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) < 
+              DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE) ) {
+              earliestTimeIn28Completed = dayInSequence.dateTimeCompleted;
+            }
+          }
+        }
+      }
+
+      // console.log("taco", DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE));
+      // console.log("taco", DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE));
+      // debugger;
+
+      if (
+        DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
+        ===
+        DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE) ) {
+        // earliestTimeIn28Completed = dayInSequence.dateTimeCompleted;
+        setTimeout(function(){ snd2.play(); }, 1000);
+      }
+
     }
-});
-  }
+    // END code for unique sound if task that was completed is the earliest it was ever completed in 28
+    */
+
+  });
+}
   
   onMount(async () => {
 
