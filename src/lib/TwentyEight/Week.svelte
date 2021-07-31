@@ -1,7 +1,7 @@
 <script>
 	import Day from './Day.svelte';
 	import { DateTime } from 'luxon';
-    import rough from 'roughjs';
+  import rough from 'roughjs';
 	import { onMount } from 'svelte';
 	const timesToBeRendered = 7;
 	export let docRef, data, firstDayDateTime, weekIndex;
@@ -24,7 +24,6 @@
 					rangeStart = i;
 				}
 
-				
 				if (rangeStart !== null && rangeEnd === null) {
 					rangeEnd = i;
 				}
@@ -32,7 +31,6 @@
 				if (rangeStart !== null && rangeEnd !== null && i > rangeEnd) {
 					rangeEnd = i;
 				}
-
 			}	
 		}
 
@@ -57,32 +55,26 @@
 
 	onMount(async () => {
 		handleLineRender();
-
 	});
-
 
 </script>
 
 <section>
 	<!-- {dateTime} -->
-    <!-- <br/> -->
-	
-
-
+  <!-- <br/> -->
 
 	{#each Array(timesToBeRendered) as _, index}
 		<!-- <Day dateTime={firstDayDateTime + index + (7 * weekIndex)} /> -->							
 		<Day on:linerender={handleLineRender} docRef={docRef} data={data} dateTime={firstDayDateTime} {weekIndex} dayIndex={index} />
     {/each}
     
-    
 </section>
 
 <style>
+
 	section {
 		display: inline-grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	}
-
 
 </style>

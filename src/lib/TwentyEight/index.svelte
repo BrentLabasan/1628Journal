@@ -14,7 +14,6 @@
 		twenIdToActUpon_value = value;
 	});
 
- 
   // var randomstring = require("randomstring");
   // import  randomstring from "randomstring";
   // import cryptoRandomString from 'crypto-random-string';
@@ -37,9 +36,11 @@
 
   // import { WiredButton, WiredInput } from "wired-elements"
 
+
+
 	// Firebase App (the core Firebase SDK) is always required and
 	// must be listed before other Firebase SDKs
-	import firebase from 'firebase/app/dist/index.cjs.js';
+	import firebase from 'firebase/app/dist/index.cjs.js'; // Firebase JS API v8
 
 	// Add the Firebase services that you want to use
 	// import "firebase/auth";
@@ -159,11 +160,6 @@
     }).catch((error) => {
         console.log("Error getting document:", error);
     });
-
-
-
-
-
   }
 
 	function onClick_addHabit() {
@@ -213,7 +209,6 @@
 
 	}
 
-
 	// var docRef = db.collection('twentyeights').doc(id);
 	var collection28 = db.collection('twentyeights').get();
 
@@ -221,7 +216,6 @@
 
 	collection28
   .then((querySnapshot) => {
-
 
     querySnapshot.forEach((twentyEight) => {
         // doc.data() is never undefined for query doc snapshots
@@ -276,8 +270,6 @@ function filterDataByTag(data, tag) {
       arrayTags = urlTags.split(',')
     }
   }
-
-
 
 </script>
 
@@ -337,7 +329,6 @@ function filterDataByTag(data, tag) {
     </details-dialog>
   </details> -->
   
-	<!-- {DateTime.now().toISODate()} -->
 	<br />
   <br />
   <br />
@@ -345,48 +336,39 @@ function filterDataByTag(data, tag) {
 
   {#if Object.keys(data).length > 0}
 
-  
+    <!-- <ShowByTag tag="Alaska Airlines" db={db} data={data}>
+    </ShowByTag>
+    <ShowByTag tag="stretches" db={db} data={data} >
+    </ShowByTag>
 
-  <!-- <ShowByTag tag="Alaska Airlines" db={db} data={data}>
-  </ShowByTag>
-  <ShowByTag tag="stretches" db={db} data={data} >
-  </ShowByTag>
+    <ShowByTag tag="Fabricator Studio" db={db} data={data} >
+    </ShowByTag>
 
-  <ShowByTag tag="Fabricator Studio" db={db} data={data} >
-  </ShowByTag>
-
-  <ShowByTag tag="chores" db={db} data={data} >
-  </ShowByTag>
-  <ShowByTag tag="daily reading" db={db} data={data} >
-  </ShowByTag> -->
+    <ShowByTag tag="chores" db={db} data={data} >
+    </ShowByTag>
+    <ShowByTag tag="daily reading" db={db} data={data} >
+    </ShowByTag> -->
 
 
-  {#if urlTags}
-    {#each arrayTags as tag, i}
-      <ShowSelected tag="{tag}" db={db} data={filterDataByTag(data, tag)}>
-      </ShowSelected>
-    {/each}
-  {:else}
+    {#if urlTags}
 
-    {#each tagsDefault as tag, i}
-      <ShowSelected tag="{tag}" db={db} data={filterDataByTag(data, tag)}>
-      </ShowSelected>
-    {/each}
+      {#each arrayTags as tag, i}
+        <ShowSelected tag="{tag}" db={db} data={filterDataByTag(data, tag)}>
+        </ShowSelected>
+      {/each}
 
-  {/if}
+    {:else}
 
+      {#each tagsDefault as tag, i}
+        <ShowSelected tag="{tag}" db={db} data={filterDataByTag(data, tag)}>
+        </ShowSelected>
+      {/each}
 
-
-
-
-
-
+    {/if}
 
   <!-- <ShowSelected tag="" db={db} data={filterDataByTag(data, '')}>
   <ShowSelected tag="" db={db} data={filterDataByTag(data, '')}>
   <ShowSelected tag="" db={db} data={filterDataByTag(data, '')}> -->
-
-
 
   {/if}
 

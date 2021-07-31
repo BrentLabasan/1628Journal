@@ -1,20 +1,16 @@
 <script>
-	// import Day from './Day.svelte';
-    // const timesToBeRendered = 7;
-    import { DateTime } from 'luxon';
-    import rough from 'roughjs';
-    import { onMount } from 'svelte';
-    // import 'animate.css';
-    import { createEventDispatcher } from 'svelte';
+  import { DateTime } from 'luxon';
+  import rough from 'roughjs';
+  import { onMount } from 'svelte';
+  // import 'animate.css';
+  import { createEventDispatcher } from 'svelte';
 
-    const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher();
 
-
-
-import confirm from "./sound-effects/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.mp3"
-import bell from "./sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3";
-import granted from "./sound-effects/audioblocks-new-ability-granted-achieve-level-up-skill-learn-achieve-level-up-skill-learn_BZQXL_dXFvI_NWM.mp3";
-export let docRef, data, dateTime, weekIndex, dayIndex;
+  import confirm from "./sound-effects/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.mp3"
+  import bell from "./sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3";
+  import granted from "./sound-effects/audioblocks-new-ability-granted-achieve-level-up-skill-learn-achieve-level-up-skill-learn_BZQXL_dXFvI_NWM.mp3";
+  export let docRef, data, dateTime, weekIndex, dayIndex;
 // console.log(data, dateTime, weekIndex, dayIndex);
 
 const identifier = `${data.id}-${weekIndex}-${dayIndex}`
@@ -60,9 +56,6 @@ function onClick() {
     console.log("Day's status successfully written!");
     // let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
     
-
-
-
     const arrArr = [
       "3:00",
       "6:00",
@@ -148,194 +141,151 @@ function onClick() {
   
   onMount(async () => {
 
-    // working
     let roughCanvas = rough.canvas(document.getElementById(identifier));
-    // roughCanvas.rectangle(10, 10, 100, 100);
-    // roughCanvas.rectangle(140, 10, 100, 100, { fill: 'red'});
-
-
     roughCanvas.circle(15, 15, 25, { fill: 'black', fillWeight: 3 }); 
 
-    // roughCanvas.ellipse(350, 50, 150, 80);
-// roughCanvas.ellipse(610, 50, 150, 80, {fill: 'blue', stroke: 'red'});
-
-
-
-
-    
-    // let roughSvg = rough.svg(document.getElementById('svg'));
-    // document.getElementById('target').appendChild(roughSvg.rectangle(10, 10, 100, 100));
-
-  // svg.appendChild(roughSvg.rectangle(10, 10, 100, 100));
-// svg.appendChild(roughSvg.rectangle(140, 10, 100, 100, { fill: 'red'}));
-
-// rc.rectangle(10, 10, 200, 200); // x, y, width, height
   });
   
 
 </script>
 
-<section     class:evenWeek="{ weekIndex % 2 === 0}"
-id="dayContainer" on:click={onClick}>
-    <!-- { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() }  -->
+<section class:evenWeek="{ weekIndex % 2 === 0}" id="dayContainer" on:click={onClick}>
+  <!-- { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() }  -->
 
-    <div 
+  <div 
     id="container_dayNumber"
     class:bold="{dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() === DateTime.now().toISODate()}"
     class="animate__animated animate__infinite"
     class:animate__headShake="{dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate() === DateTime.now().toISODate() && !data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}"
-    >
+  >
 
+    { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
+    { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).weekdayShort }
 
-      { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).day }
-      { dateTime.plus({ day: dayIndex + (7 * weekIndex)}).weekdayShort }
+  </div>
 
+  <!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
+  <!-- {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? "T" : ""} -->
 
+  <div id="container_icon_completed">
 
-    </div>
-<!-- {dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()} -->
-    <!-- {data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? "T" : ""} -->
+    <!-- <svg height="30" width="30">
+      <circle cx="15" cy="15" r="15" stroke="black" stroke-width="0" fill="black" />
+    </svg> -->
 
-    <div id="container_icon_completed">
+    <canvas 
+    date={dateTime.toISODate()}
+    class="doodle-btn"
+    class:hidden="{!data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}"
+    id={identifier} width="30" height="30">
+      &nbsp;
+    </canvas>
 
-      <!-- <svg height="30" width="30">
-        <circle cx="15" cy="15" r="15" stroke="black" stroke-width="0" fill="black" />
-      </svg> -->
-
-      <canvas 
-      date={dateTime.toISODate()}
-      class="doodle-btn"
-      class:hidden="{!data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}"
-      id={identifier} width="30" height="30">&nbsp;</canvas>
-
-      <canvas style="pointer-events: none; position: absolute; margin-top: 10px; margin-left: -20px;" id={`forLine-${identifier}`} width="500" height="10">
-        &nbsp;
-      </canvas>
+    <canvas style="pointer-events: none; position: absolute; margin-top: 10px; margin-left: -20px;" id={`forLine-${identifier}`} width="500" height="10">
+      &nbsp;
+    </canvas>
 
       <!-- <svg id="svg"></svg> -->
       <!-- <span id="target">a</span> -->
   
-      <!-- meow -->
-  
+  </div>
 
-    </div>
+  <!-- {renderDateTimeCompleted()} -->
 
-
-
-    <!-- <br/> -->
-
-    <!-- {renderDateTimeCompleted()} -->
-
-    <!-- works -->
-    <div id="container_timeCompleted">
-      {#if data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
+  <!-- works -->
+  <div id="container_timeCompleted">
+    {#if data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted}
 
       { data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? DateTime.fromISO(data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) : ''}
-      {/if}
-    </div>
+    {/if}
+  </div>
 
-
-
-    <!-- { data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? new DateTime(data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) : ''} -->
+  <!-- { data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].isCompleted ? new DateTime(data.days[dateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate()].dateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) : ''} -->
 </section>
 
 <style>
   .hidden {
     visibility: hidden;
   }
-    #dayContainer {
-        display: inline-block;
 
-        border-top: 1px dashed orangered;
-        border-left: 1px dashed orangered;
-        border-bottom: 1px dashed orangered;
-        
-        /* width: 50px;
-        height: 50px;
-        border-radius: 100px; */
+  #dayContainer {
+    display: inline-block;
 
-        width: 70px;
-        height: 70px;
+    border-top: 1px dashed orangered;
+    border-left: 1px dashed orangered;
+    border-bottom: 1px dashed orangered;
+    
+    /* width: 50px;
+    height: 50px;
+    border-radius: 100px; */
 
-        cursor: pointer;
+    width: 70px;
+    height: 70px;
 
-        padding: 10px 0;
+    cursor: pointer;
 
-        display: flex;
-      flex-direction: column;
+    padding: 10px 0;
 
-      /* justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe; */
+    display: flex;
+    flex-direction: column;
 
-      justify-content: space-between;
+    /* justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe; */
+    justify-content: space-between;
 
-/* weird */
-      /* justify-content: center; */
-      /* weird */
-      /* justify-content: space-around; */
-      /* weird */
-      /* justify-content: space-evenly; */
-      /* justify-content: ; */
-      /* justify-content: ; */
-
-      padding: 5px;
-    }
-
-    #container_timeCompleted {
-      /* debug */
-      /* border: 1px solid orange; */
-
-      align-self: center;
-
-    }
-
-    #container_dayNumber {
-      /* debug */
-      /* border: 1px solid blue; */
-    }
-
-    section:hover {
-        background-color: grey;
-    }
-
-    #container_icon_completed {
-      /* display: inline-flex; */
-      /* display: inline-block; */
-
-      /* position: absolute; */
-
-      /* debug */
-      /* border: 1px solid yellow; */
-
-      align-self: center;
-
-      /* doesn't work */
-      z-index: 999;
-      
-
-      /* animation: blinker 1s linear infinite; */
-    }
-
-
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
+    padding: 5px;
   }
-}
 
-.bold {
-  font-weight: bold;
-}
+  #container_timeCompleted {
+    align-self: center;
+
+    /* debug */
+    /* border: 1px solid orange; */
+  }
+
+  #container_dayNumber {
+    /* debug */
+    /* border: 1px solid blue; */
+  }
+
+  section:hover {
+    background-color: grey;
+  }
+
+  #container_icon_completed {
+    /* display: inline-flex; */
+    /* display: inline-block; */
+
+    /* position: absolute; */
+
+    /* debug */
+    /* border: 1px solid yellow; */
+
+    align-self: center;
+
+    /* doesn't work */
+    z-index: 999;
+    
+
+    /* animation: blinker 1s linear infinite; */
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .bold {
+    font-weight: bold;
+  }
 
 
-.doodle-btn {
-  /* cursor: pointer; */
-}
+  .doodle-btn {
+    /* cursor: pointer; */
+  }
 
-.evenWeek {
-  background-color: rgb(216, 216, 216);
-}
-
-
+  .evenWeek {
+    background-color: rgb(216, 216, 216);
+  }
 
 </style>
