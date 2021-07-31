@@ -8,13 +8,12 @@
   import { twenIdToActUpon } from './stores.js';
   import SetTwenIdToActUpon from './SetTwenIdToActUpon.svelte';
 
-  export let db, entireCollection, key ;
-
+  export let firestore, entireCollection, key ;
 
 	const timesToBeRendered = 4;
 	const id = key;
 
-	var docRef = db.collection('twentyeights').doc(id);
+	var docRef = firestore.collection('twentyeights').doc(id);
 	let data;
 
 	docRef
@@ -95,5 +94,6 @@
     /* justify-content: space-evenly; */
     /* justify-content: ; */
     /* justify-content: ; */
+
 	}
 </style>

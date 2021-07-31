@@ -66,7 +66,7 @@
 	{#each Array(timesToBeRendered) as _, index}
 		<!-- <Day dateTime={firstDayDateTime + index + (7 * weekIndex)} /> -->							
 		<Day on:linerender={handleLineRender} docRef={docRef} data={data} dateTime={firstDayDateTime} {weekIndex} dayIndex={index} />
-    {/each}
+  {/each}
     
 </section>
 

@@ -59,17 +59,17 @@
 	// Initialize Firebase
 	!firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
-  var db = firebase.firestore();
+  var firestore = firebase.firestore();
   
   // each twen was updated to have a random 20 length alphanumeric
   function updateAFieldOfAllActiveHabits() {
     // Firebase v8
-    db.collection("twentyeights").get().then((querySnapshot) => {
+    firestore.collection("twentyeights").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data());
 
-            let twenRef = db.collection('twentyeights').doc(doc.id);
+            let twenRef = firestore.collection('twentyeights').doc(doc.id);
 
             twenRef.set({
                 habitId: Array.from(Array(20), () => Math.floor(Math.random() * 36).toString(36)).join('')
@@ -83,7 +83,7 @@
     
     // - get data of 28 to archive
 
-    var docRef = db.collection("twentyeights").doc(twenIdToActUpon_value);
+    var docRef = firestore.collection("twentyeights").doc(twenIdToActUpon_value);
 
     docRef.get().then((doc) => {
         if (doc.exists) {
@@ -91,7 +91,7 @@
 
             // - put it in archive > habitId > 28id
 
-            db.collection("archive").doc(doc.data().habitId).set(
+            firestore.collection("archive").doc(doc.data().habitId).set(
               {
                 [doc.data().id]: doc.data()
               }
@@ -115,7 +115,7 @@
                     };
                   }
 
-                  db.collection('twentyeights')
+                  firestore.collection('twentyeights')
                     .add({
                       startDate: DateTime.now().toISODate(), // todo might change
                       days: obj,
@@ -125,12 +125,12 @@
                     .then((docRef) => {
                       // console.log('Document written with ID: ', docRef.id);
                       
-                      db.collection("twentyeights").doc( docRef.id ).update({
+                      firestore.collection("twentyeights").doc( docRef.id ).update({
                           id: docRef.id
                       })
 
                       // - delete it from the current 28s
-                      db.collection("twentyeights").doc(doc.data().id).delete().then(() => {
+                      firestore.collection("twentyeights").doc(doc.data().id).delete().then(() => {
                           console.log(`Document ${doc.data().id} successfully removed from current 28s because it was archived.`);
                       }).catch((error) => {
                           console.error("Error removing document: ", error);
@@ -186,7 +186,7 @@
 			};
 		}
 
-		db.collection('twentyeights')
+		firestore.collection('twentyeights')
 			.add({
 				startDate: DateTime.now().toISODate(), // todo might change
         days: obj,
@@ -196,7 +196,7 @@
 			.then((docRef) => {
         // console.log('Document written with ID: ', docRef.id);
         
-        db.collection("twentyeights").doc( docRef.id ).update({
+        firestore.collection("twentyeights").doc( docRef.id ).update({
             id: docRef.id
         })
 			})
@@ -209,8 +209,8 @@
 
 	}
 
-	// var docRef = db.collection('twentyeights').doc(id);
-	var collection28 = db.collection('twentyeights').get();
+	// var docRef = firestore.collection('twentyeights').doc(id);
+	var collection28 = firestore.collection('twentyeights').get();
 
 	let data = {};
 
@@ -336,39 +336,41 @@ function filterDataByTag(data, tag) {
 
   {#if Object.keys(data).length > 0}
 
-    <!-- <ShowByTag tag="Alaska Airlines" db={db} data={data}>
+    <!-- <ShowByTag tag="Alaska Airlines" firestore={firestore} data={data}>
     </ShowByTag>
-    <ShowByTag tag="stretches" db={db} data={data} >
-    </ShowByTag>
-
-    <ShowByTag tag="Fabricator Studio" db={db} data={data} >
+    <ShowByTag tag="stretches" firestore={firestore} data={data} >
     </ShowByTag>
 
-    <ShowByTag tag="chores" db={db} data={data} >
+    <ShowByTag tag="Fabricator Studio" firestore={firestore} data={data} >
     </ShowByTag>
-    <ShowByTag tag="daily reading" db={db} data={data} >
+
+    <ShowByTag tag="chores" firestore={firestore} data={data} >
+    </ShowByTag>
+    <ShowByTag tag="daily reading" firestore={firestore} data={data} >
     </ShowByTag> -->
 
 
+    <!-- if browser URL has "tags" get parameters -->
     {#if urlTags}
 
       {#each arrayTags as tag, i}
-        <ShowSelected tag="{tag}" db={db} data={filterDataByTag(data, tag)}>
+        <ShowSelected tag="{tag}" firestore={firestore} data={filterDataByTag(data, tag)}>
         </ShowSelected>
       {/each}
 
+    <!-- if browser URL DOES NOT have "tags" get parameters -->
     {:else}
 
       {#each tagsDefault as tag, i}
-        <ShowSelected tag="{tag}" db={db} data={filterDataByTag(data, tag)}>
+        <ShowSelected tag="{tag}" firestore={firestore} data={filterDataByTag(data, tag)}>
         </ShowSelected>
       {/each}
 
     {/if}
 
-  <!-- <ShowSelected tag="" db={db} data={filterDataByTag(data, '')}>
-  <ShowSelected tag="" db={db} data={filterDataByTag(data, '')}>
-  <ShowSelected tag="" db={db} data={filterDataByTag(data, '')}> -->
+  <!-- <ShowSelected tag="" firestore={firestore} data={filterDataByTag(data, '')}>
+  <ShowSelected tag="" firestore={firestore} data={filterDataByTag(data, '')}>
+  <ShowSelected tag="" firestore={firestore} data={filterDataByTag(data, '')}> -->
 
   {/if}
 

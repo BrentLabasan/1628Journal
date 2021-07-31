@@ -46,14 +46,18 @@ function onClick() {
     console.log("Day is pending to be written as NOT completed.");
   }
 
-  dispatch('linerender', {
-    text: 'Hello!'
-  });
+
 
 
   // console.log(newObject);
+  // attempting to write Day's status to Firebase
   docRef.set(newObject).then(() => {
     console.log("Day's status successfully written!");
+
+    dispatch('linerender', {
+      text: 'Hello!'
+    });
+
     // let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
     
     const arrArr = [
