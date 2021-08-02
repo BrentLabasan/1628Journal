@@ -61,9 +61,9 @@ function onClick() {
     // let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
     
     const arrArr = [
-      "3:00",
-      "6:00",
-      "9:00",
+      "03:00",
+      "06:00",
+      "09:00",
       "12:00",
       "15:00",
       "18:00",
@@ -72,22 +72,22 @@ function onClick() {
     ];
 
     if (newObject.days[blah].isCompleted) {
-      // debugger;
+      debugger;
 
       // if task was completed before OR during its target period
       if ( DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
            <
-            arrArr[data.period8]
+            arrArr[data.period8 - 1] // b/c Periods of the day are not 0 based, but the array is
       ) {
         let snd2 = new Audio(bell); // buffers automatically when created
-        setTimeout(function(){ snd2.play(); }, 1000);
+        setTimeout(function(){ snd2.play(); console.log("Task was completed before its period8 ended!") }, 1000);
 
         if ( DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
            <
-            arrArr[data.period8 - 1]
+            arrArr[data.period8 - 2]
            ) {
             let snd3 = new Audio(granted); // buffers automatically when created
-            setTimeout(function(){ snd3.play(); }, 1000);
+            setTimeout(function(){ snd3.play(); "Task was completed before its period8 started !!"}, 2000);
            }
       }
     }
