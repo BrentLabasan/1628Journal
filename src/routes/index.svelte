@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>1628 Journal</title>
 </svelte:head>
 
 <section>
