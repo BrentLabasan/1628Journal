@@ -374,9 +374,11 @@ function filterDataByTag(data, tag) {
 
   {/if}
 
-  <button on:click={updateAFieldOfAllActiveHabits}>
+
+  <!-- sets the habitId of everything in 'twentyeights' -->
+  <!-- <button on:click={updateAFieldOfAllActiveHabits}>
     ADMIN
-  </button>
+  </button> -->
 
   
 </section>
