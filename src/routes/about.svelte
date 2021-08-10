@@ -1,6 +1,14 @@
 <script context="module">
 	import { browser, dev } from '$app/env';
-	import { Card, CardText, CardActions, Button, MaterialApp } from 'svelte-materialify';
+  import {
+    Card,
+    CardTitle,
+    CardSubtitle,
+    CardActions,
+    Button,
+    Icon,
+    Divider,
+    MaterialApp } from 'svelte-materialify';
 
 	// we don't need any JS on this page, though we'll load
 	// it in dev so that we get hot module replacement...
@@ -20,21 +28,17 @@
 </svelte:head>
 
 <div class="content">
-	<Card outlined style="max-width:300px;">
-		<div class="pl-4 pr-4 pt-3">
-		  <span class="text-overline"> OVERLINE </span>
-		  <br />
-		  <span class="text-h5 mb-2">Headline</span>
-		  <br />
-		</div>
-		<CardText>
-		  Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, qui quaerat
-		  rerum incidunt nisi ducimus?
-		</CardText>
-		<CardActions>
-		  <Button rounded outlined>Button</Button>
-		</CardActions>
-	  </Card>
+  <Card style="max-width:350px;">
+    <img src="//picsum.photos/350" alt="background" />
+    <CardTitle>Top western road trips</CardTitle>
+    <CardSubtitle>1,000 miles of wonder</CardSubtitle>
+    <Divider />
+    <div class="pl-4 pr-4 pt-2 pb-2">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita autem,
+      asperiores dolores, doloremque ea atque suscipit dolore, ut adipisci amet
+      possimus dicta at voluptas consequatur!
+    </div>
+  </Card>
 </div>
 
 <style>
