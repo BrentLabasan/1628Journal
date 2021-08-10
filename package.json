@@ -39,6 +39,7 @@
     "luxon": "^1.27.0",
     "randomstring": "^1.2.1",
     "roughjs": "^4.4.1",
+    "svelte-materialify": "^0.3.11",
     "svelte-preprocess": "^4.7.3",
     "uuid": "^8.3.2",
     "wired-elements": "^3.0.0-rc.6"

@@ -1,5 +1,6 @@
 <script context="module">
 	import { browser, dev } from '$app/env';
+	import { Card, CardText, CardActions, Button, MaterialApp } from 'svelte-materialify';
 
 	// we don't need any JS on this page, though we'll load
 	// it in dev so that we get hot module replacement...
@@ -19,26 +20,21 @@
 </svelte:head>
 
 <div class="content">
-	<h1>About this app</h1>
-
-	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
-
-	<!-- TODO lose the @next! -->
-	<pre>npm init svelte@next</pre>
-
-	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
-	</p>
-
-	<p>
-		The <a href="/todos">TODOs</a> page illustrates SvelteKit's data loading and form handling. Try using
-		it with JavaScript disabled!
-	</p>
+	<Card outlined style="max-width:300px;">
+		<div class="pl-4 pr-4 pt-3">
+		  <span class="text-overline"> OVERLINE </span>
+		  <br />
+		  <span class="text-h5 mb-2">Headline</span>
+		  <br />
+		</div>
+		<CardText>
+		  Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, qui quaerat
+		  rerum incidunt nisi ducimus?
+		</CardText>
+		<CardActions>
+		  <Button rounded outlined>Button</Button>
+		</CardActions>
+	  </Card>
 </div>
 
 <style>
