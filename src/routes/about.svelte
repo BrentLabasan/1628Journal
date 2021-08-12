@@ -9,6 +9,18 @@
     Icon,
     Divider,
     MaterialApp } from 'svelte-materialify';
+import { DateTime } from 'luxon';
+import { onMount } from 'svelte';
+
+
+    // Firebase App (the core Firebase SDK) is always required and
+    // must be listed before other Firebase SDKs
+    import firebase from 'firebase/app/dist/index.cjs.js'; // Firebase JS API v8
+
+    // Add the Firebase services that you want to use
+    // import "firebase/auth";
+    import 'firebase/firestore/dist/index.node.cjs.js';
+
 
 	// we don't need any JS on this page, though we'll load
 	// it in dev so that we get hot module replacement...
@@ -20,14 +32,84 @@
 
 	// since there's no dynamic data here, we can prerender
 	// it so that it gets served as a static asset in prod
-	export const prerender = true;
+  export const prerender = true;
+
+
+  
+
+</script>
+
+<script>
+  onMount(async () => {
+
+    // let roughCanvas = rough.canvas(document.getElementById(identifier));
+    // roughCanvas.circle(15, 15, 25, { fill: 'black', fillWeight: 3 }); 
+
+
+
+    const config = {
+      apiKey: 'AIzaSyCo1_tSUtuq8bmuuGJ01AdvpkdUB4twU-Y',
+      authDomain: 'dev-2d025.firebaseapp.com',
+      projectId: 'dev-2d025',
+      storageBucket: 'dev-2d025.appspot.com',
+      messagingSenderId: '155757852699',
+      appId: '1:155757852699:web:889c9bdf1423f1c082e0be',
+      measurementId: 'G-209RZ60MX4'
+    };
+
+    // Initialize Firebase
+    !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
+
+    var firestore = firebase.firestore();
+
+    // var docRef = firestore.collection('twentyeights').doc(id);
+    var collection28 = firestore.collection('twentyeights').get();
+
+    // let data = {};
+    let array = [];
+
+    collection28
+      .then((querySnapshot) => {
+
+        querySnapshot.forEach((twentyEight) => {
+            // doc.data() is never undefined for query doc snapshots
+            // console.log(twentyEight.id, " => ", twentyEight.data());
+
+            // data[twentyEight.id] = twentyEight.data()
+            
+            if (twentyEight.data().period16) {
+              array[twentyEight.data().period16] = twentyEight.data();
+            }
+        });
+
+        // console.log("data", data);
+        // console.log(typeof data)
+    });
+    debugger;
+    for (let i = 0; i < 16; i++) {
+      let elCard = document.createElement('Card');
+      let textNodeCardTitle = document.createTextNode('CardTitle');
+      elCard.appendChild(textNodeCardTitle);
+
+      document.getElementById(`sectionPeriod16_${i + 1}`).appendChild(elCard);
+    }
+  });
+
+
 </script>
 
 <svelte:head>
 	<title>About</title>
 </svelte:head>
 
-<div class="content">
+{#each Array(16) as _, index}
+  <!-- <Day dateTime={firstDayDateTime + index + (7 * weekIndex)} /> -->							
+  <section id={"sectionPeriod16_" + (index + 1)} class="periodSection">
+    Period {index + 1}
+  </section>
+{/each}
+
+<!-- <div class="content">
   <Card style="max-width:350px;">
     <img src="//picsum.photos/350" alt="background" />
     <CardTitle>Top western road trips</CardTitle>
@@ -39,7 +121,7 @@
       possimus dicta at voluptas consequatur!
     </div>
   </Card>
-</div>
+</div> -->
 
 <style>
 	.content {
@@ -47,4 +129,9 @@
 		max-width: var(--column-width);
 		margin: var(--column-margin-top) auto 0 auto;
 	}
+
+  .periodSection {
+    border: 1px solid black;
+    padding: 10px;
+  }
 </style>
