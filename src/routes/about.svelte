@@ -59,7 +59,7 @@ import { onMount } from 'svelte';
     // Initialize Firebase
     !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
-    var firestore = firebase.firestore();
+    let firestore = firebase.firestore();
 
     // var docRef = firestore.collection('twentyeights').doc(id);
     var collection28 = firestore.collection('twentyeights').get();
@@ -125,7 +125,7 @@ import { onMount } from 'svelte';
   {#each Array(16) as _, index}
 
     <section id={"sectionPeriod16_" + (index + 1)} class="periodSection">
-      Period {index + 1}
+      Period {index + 1} {}
 
       <!-- { array.toString() } -->
       <!-- { array[index].toString() } -->
@@ -133,8 +133,9 @@ import { onMount } from 'svelte';
       {#each array[index] as twen}
         <!-- works -->
         <!-- { array[index].toString() } -->
-        
-        <!-- <TwenCard firestore={firestore} key={twen.id} /> -->
+
+        <TwenCard key={twen.id} twenData={twen} />
+        <!-- <TwenCard firestore={firestore} key={twen.id} twenData={twen} /> -->
 
       {/each}
 

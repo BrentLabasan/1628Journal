@@ -8,50 +8,27 @@
   import { twenIdToActUpon } from './stores.js';
   import SetTwenIdToActUpon from './SetTwenIdToActUpon.svelte';
 
-  export let twen, key ;
-debugger;
+  export let firestore, twenData, key ;
+
 	const timesToBeRendered = 4;
 	const id = key;
 
-	var docRef = firestore.collection('twentyeights').doc(id);
-	let data;
+	// var docRef = firestore.collection('twentyeights').doc(id);
+	// let data;
 
-	docRef
-		.onSnapshot((doc) => {
-			// console.log('Current data: ', doc.data());
-			data = doc.data();
-    });
+	// docRef
+	// 	.onSnapshot((doc) => {
+	// 		// console.log('Current data: ', doc.data());
+	// 		data = doc.data();
+  //   });
+
+    console.log("twenData", twenData);
 </script>
 
 <section>
 	<!-- {DateTime.now().toISODate()} -->
 
-  {#if data}
-
-    <!-- shows up on top of TwentyEight -->
-    <!-- <div id="container_info">
-      <span>
-        {data.name}
-      </span>
-    
-      <span>
-        {data.tags}
-      </span>
-    </div> -->
-
-    <section class="twentyEight_name">
-      {data.name}
-      <span>
-        <!-- <i class="fa fa-bars" on:click={openDialog}></i> -->
-
-        <SetTwenIdToActUpon key={key} />
-      </span>
-    </section>
-
-    {#each Array(timesToBeRendered) as _, index}
-      <Week docRef={docRef} data={data} firstDayDateTime={DateTime.fromISO(data.startDate)} weekIndex={index} />
-    {/each}
-  {/if}
+  { twenData.name }
 </section>
 
 <style>
