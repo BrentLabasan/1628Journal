@@ -180,10 +180,15 @@
   <!-- <img src="//picsum.photos/350" alt="background" /> -->
 
 
-  <CardTitle >
-    <Checkbox checked={data.days[DateTime.now().toISODate()].isCompleted}></Checkbox>
+  <CardTitle>
+    <!-- <Checkbox change={onClick} checked={data.days[DateTime.now().toISODate()].isCompleted}></Checkbox> -->
+    {#if data.days[DateTime.now().toISODate()]}
+    <input on:click={onClick} type="checkbox" checked={data.days[DateTime.now().toISODate()].isCompleted} />
+
+    {/if}
+    &nbsp;
     { twenData.name }
-    <span on:click={onClick}>test</span>
+    <!-- <button on:click={onClick}>test</button> -->
   </CardTitle>
   <!-- <CardSubtitle>1,000 miles of wonder</CardSubtitle> -->
   <!-- <CardActions>
@@ -208,6 +213,15 @@
 
 <style>
 
+CardTitle {
+  cursor: pointer;
+}
+
+input[type="checkbox"]{
+  width: 30px; /*Desired width*/
+  height: 30px; /*Desired height*/
+  cursor: pointer;
+}
 	#container_info {
 		display: flex;
 		justify-content: space-between;

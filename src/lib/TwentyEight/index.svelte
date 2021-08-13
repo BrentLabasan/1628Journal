@@ -296,6 +296,19 @@ function filterDataByTag(data, tag) {
       <br/><br/>
       <button on:click={archiveAndCreateNewTwen}>archiveAndCreateNewTwen() </button>
 
+      <br/>
+      <br/>
+      Period16
+      <br/>
+
+      
+
+      <!-- todo -->
+      <!-- {#if data && data[{twenIdToActUpon_value}].period16 } -->
+      <!-- <input type=number min="1" max="16" value={ data[{twenIdToActUpon_value}].period16 } /> -->
+
+      <!-- {/if} -->
+
     </div>
   </wired-dialog>
 
@@ -391,5 +404,9 @@ function filterDataByTag(data, tag) {
   #wiredDialogInnerContainer {
     /* width: 960px; */
     padding: 40px;
+  }
+
+  input[type=number] {
+    border: 1px solid black;
   }
 </style>

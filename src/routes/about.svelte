@@ -96,11 +96,11 @@ function converter(x) {
             
             if (twentyEight.data().period16) {
 
-              if ( !array[twentyEight.data().period16] ) {
-                array[twentyEight.data().period16] = [];
+              if ( !array[twentyEight.data().period16 - 1] ) {
+                array[twentyEight.data().period16 - 1] = [];
               }
 
-              array[twentyEight.data().period16].push( twentyEight.data() );
+              array[twentyEight.data().period16 - 1].push( twentyEight.data() );
             }
 
         });
