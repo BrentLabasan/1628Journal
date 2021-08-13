@@ -23,16 +23,148 @@
 	const timesToBeRendered = 4;
 	const id = key;
 
-	// var docRef = firestore.collection('twentyeights').doc(id);
-	// let data;
+	var docRef = firestore.collection('twentyeights').doc(id);
+	let data;
 
-	// docRef
-	// 	.onSnapshot((doc) => {
-	// 		// console.log('Current data: ', doc.data());
-	// 		data = doc.data();
-  //   });
+	docRef
+		.onSnapshot((doc) => {
+			// console.log('Current data: ', doc.data());
+			data = doc.data();
+    });
 
     console.log("twenData", twenData);
+
+    function onClick() {
+  // alert('Day onClick()')
+  debugger;
+  // const blah = DateTime.plus({ day: dayIndex + (7 * weekIndex)}).toISODate();
+  const blah = DateTime.now().toISODate();
+  // console.log(blah);
+  const newObject = Object.assign({}, data )
+  newObject.days[blah].isCompleted = !newObject.days[blah].isCompleted;
+
+  if (newObject.days[blah].isCompleted) {
+    var snd = new Audio(confirm); // buffers automatically when created
+    snd.play();
+    // mark in Firebase as completed
+    newObject.days[blah].DateTimeCompleted = DateTime.now().toISO();
+    console.log("Day is pending to be written as completed.");
+  } else {
+    newObject.days[blah].DateTimeCompleted = null;
+    console.log("Day is pending to be written as NOT completed.");
+  }
+
+
+
+
+  // console.log(newObject);
+  // attempting to write Day's status to Firebase
+  docRef.set(newObject).then(() => {
+    console.log("Day's status successfully written!");
+
+    // dispatch('linerender', {
+    //   text: 'Hello!'
+    // });
+
+    // let snd2 = new Audio("../../../sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3"); // buffers automatically when created
+    
+    const arrArr = [
+      "03:00",
+      "06:00",
+      "09:00",
+      "12:00",
+      "15:00",
+      "18:00",
+      "21:00",
+      "24:00",
+    ];
+
+    const period12 = [
+      "02:00",
+      "04:00",
+      "06:00",
+      "08:00",
+      "10:00",
+      "12:00",
+      "14:00",
+      "16:00",
+      "18:00",
+      "20:00",
+      "22:00",
+      "24:00",
+    ];
+
+    if (newObject.days[blah].isCompleted) {
+      debugger;
+
+      // if task was completed before OR during its target period
+      if ( DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
+           <
+            arrArr[data.period8 - 1] // b/c Periods of the day are not 0 based, but the array is
+      ) {
+        let snd2 = new Audio(bell); // buffers automatically when created
+        setTimeout(function(){ snd2.play(); console.log("Task was completed before its period8 ended!") }, 1000);
+
+        if ( DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
+           <
+            arrArr[data.period8 - 2]
+           ) {
+            let snd3 = new Audio(granted); // buffers automatically when created
+            setTimeout(function(){ snd3.play(); "Task was completed before its period8 started !!"}, 2000);
+           }
+      }
+    }
+
+    /*
+    // BEGIN code for unique sound if task that was completed is the earliest it was ever completed in 28
+    let snd2 = new Audio(bell); // buffers automatically when created
+    // sound effect logic
+    if (newObject.days[blah].isCompleted) {
+
+      // - play an extra sound effect upon marking a Day as completed, if it's the earliest time completed so far of that week
+
+      let earliestTimeIn28Completed = null;
+
+      for (let i = 0; i < 28; i++) {
+        // debugger;
+
+        let dayInSequence = data.days[ DateTime.fromISO(data.startDate).plus({days: i}).toISODate() ];
+
+        if (dayInSequence.DateTimeCompleted) {
+          // console.log(dayInSequence.DateTimeCompleted);
+
+
+          if (earliestTimeIn28Completed === null) {
+            earliestTimeIn28Completed = dayInSequence.DateTimeCompleted;
+            // setTimeout(function(){ snd2.play(); }, 1000);
+          } else {
+            if (
+              DateTime.fromISO(dayInSequence.DateTimeCompleted).toLocaleString(DateTime.TIME_24_SIMPLE) < 
+              DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE) ) {
+              earliestTimeIn28Completed = dayInSequence.DateTimeCompleted;
+            }
+          }
+        }
+      }
+
+      // console.log("taco", DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE));
+      // console.log("taco", DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE));
+      // debugger;
+
+      if (
+        DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) 
+        ===
+        DateTime.fromISO(earliestTimeIn28Completed).toLocaleString(DateTime.TIME_24_SIMPLE) ) {
+        // earliestTimeIn28Completed = dayInSequence.DateTimeCompleted;
+        setTimeout(function(){ snd2.play(); }, 1000);
+      }
+
+    }
+    // END code for unique sound if task that was completed is the earliest it was ever completed in 28
+    */
+
+  });
+}
 </script>
 
 
@@ -44,9 +176,10 @@
   <!-- <img src="//picsum.photos/350" alt="background" /> -->
 
 
-  <CardTitle>
+  <CardTitle >
     <Checkbox checked={twenData.days[DateTime.now().toISODate()].isCompleted}></Checkbox>
     { twenData.name }
+    <span on:click={onClick}>test</span>
   </CardTitle>
   <!-- <CardSubtitle>1,000 miles of wonder</CardSubtitle> -->
   <!-- <CardActions>

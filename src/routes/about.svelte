@@ -38,7 +38,7 @@ import { onMount } from 'svelte';
 function converter(x) {
   let hours = Math.floor(x / 60);
   let minutes = x % 60;
-debugger;
+// debugger;
   return {
     hours: hours,
     minutes: minutes
