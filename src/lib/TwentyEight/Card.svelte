@@ -6,6 +6,7 @@
   import {
     Card,
     CardTitle,
+    Checkbox,
     CardSubtitle,
     CardActions,
     Button,
@@ -39,8 +40,14 @@
 
 
 <Card style="max-width:350px;">
-  <img src="//picsum.photos/350" alt="background" />
-  <CardTitle>{ twenData.name }</CardTitle>
+
+  <!-- <img src="//picsum.photos/350" alt="background" /> -->
+
+
+  <CardTitle>
+    <Checkbox checked={twenData.days[DateTime.now().toISODate()].isCompleted}></Checkbox>
+    { twenData.name }
+  </CardTitle>
   <!-- <CardSubtitle>1,000 miles of wonder</CardSubtitle> -->
   <!-- <CardActions>
     <Button text>Button</Button>
