@@ -133,7 +133,9 @@ debugger;
   {#each Array(16) as _, index}
 
     <section id={"sectionPeriod16_" + (index + 1)} class="periodSection">
-      Period {index + 1} { DateTime.fromObject(converter(90 * index)).toFormat('ff') } - { DateTime.fromObject(converter(90 * (index + 1))).toFormat('ff') }
+      <h2>
+        Period {index + 1} { DateTime.fromObject(converter(90 * index)).toFormat('HH:mm') } - { DateTime.fromObject(converter(90 * (index + 1))).toFormat('HH:mm') }
+      </h2>
 
       <!-- { array.toString() } -->
       <!-- { array[index].toString() } -->
