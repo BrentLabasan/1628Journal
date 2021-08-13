@@ -35,7 +35,15 @@ import { onMount } from 'svelte';
 	// it so that it gets served as a static asset in prod
   export const prerender = true;
 
-
+function converter(x) {
+  let hours = Math.floor(x / 60);
+  let minutes = x % 60;
+debugger;
+  return {
+    hours: hours,
+    minutes: minutes
+  }
+}
   
   let array = [];
 
@@ -125,7 +133,7 @@ import { onMount } from 'svelte';
   {#each Array(16) as _, index}
 
     <section id={"sectionPeriod16_" + (index + 1)} class="periodSection">
-      Period {index + 1} {}
+      Period {index + 1} { DateTime.fromObject(converter(90 * index)).toFormat('ff') } - { DateTime.fromObject(converter(90 * (index + 1))).toFormat('ff') }
 
       <!-- { array.toString() } -->
       <!-- { array[index].toString() } -->
