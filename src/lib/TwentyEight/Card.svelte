@@ -17,6 +17,9 @@
 
   import { twenIdToActUpon } from './stores.js';
   import SetTwenIdToActUpon from './SetTwenIdToActUpon.svelte';
+  import confirm from "./sound-effects/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.mp3"
+  import bell from "./sound-effects/audioblocks-bell-alert-notification-6_St7kf8CDU_NWM.mp3";
+  import granted from "./sound-effects/audioblocks-new-ability-granted-achieve-level-up-skill-learn-achieve-level-up-skill-learn_BZQXL_dXFvI_NWM.mp3";
 
   export let firestore, twenData, key ;
 
@@ -168,8 +171,9 @@
 </script>
 
 
-	<!-- {DateTime.now().toISODate()} -->
-
+  <!-- {DateTime.now().toISODate()} -->
+  
+  {#if data}
 
 <Card style="max-width:350px;">
 
@@ -177,7 +181,7 @@
 
 
   <CardTitle >
-    <Checkbox checked={twenData.days[DateTime.now().toISODate()].isCompleted}></Checkbox>
+    <Checkbox checked={data.days[DateTime.now().toISODate()].isCompleted}></Checkbox>
     { twenData.name }
     <span on:click={onClick}>test</span>
   </CardTitle>
@@ -199,6 +203,8 @@
     </div>
   {/if} -->
 </Card>
+
+{/if}
 
 <style>
 
