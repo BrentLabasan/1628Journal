@@ -46,7 +46,7 @@ debugger;
 }
   
   let array = [];
-
+  let firestore;
   onMount(async () => {
 
     // let roughCanvas = rough.canvas(document.getElementById(identifier));
@@ -67,7 +67,7 @@ debugger;
     // Initialize Firebase
     !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
-    let firestore = firebase.firestore();
+    firestore = firebase.firestore();
 
     // var docRef = firestore.collection('twentyeights').doc(id);
     var collection28 = firestore.collection('twentyeights').get();
@@ -145,8 +145,8 @@ debugger;
         <!-- works -->
         <!-- { array[index].toString() } -->
 
-        <TwenCard key={twen.id} twenData={twen} />
-        <!-- <TwenCard firestore={firestore} key={twen.id} twenData={twen} /> -->
+        <!-- <TwenCard key={twen.id} twenData={twen} /> -->
+        <TwenCard firestore={firestore} key={twen.id} twenData={twen} />
 
       {/each}
 
