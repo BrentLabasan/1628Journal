@@ -8,8 +8,8 @@
   import { twenIdToActUpon } from './stores.js';
   import SetTwenIdToActUpon from './SetTwenIdToActUpon.svelte';
 
-  export let firestore, entireCollection, key ;
-
+  export let twen, key ;
+debugger;
 	const timesToBeRendered = 4;
 	const id = key;
 

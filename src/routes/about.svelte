@@ -1,5 +1,6 @@
-<script context="module">
-	import { browser, dev } from '$app/env';
+<script>
+  import { browser, dev } from '$app/env';
+  import TwenCard from './../lib/TwentyEight/Card.svelte';
   import {
     Card,
     CardTitle,
@@ -36,10 +37,8 @@ import { onMount } from 'svelte';
 
 
   
+  let array = [];
 
-</script>
-
-<script>
   onMount(async () => {
 
     // let roughCanvas = rough.canvas(document.getElementById(identifier));
@@ -66,10 +65,20 @@ import { onMount } from 'svelte';
     var collection28 = firestore.collection('twentyeights').get();
 
     // let data = {};
-    let array = [];
+
+    // do not do this, will cause {#if array.length > 0} to fire prematurely 
+    // for (let i = 0; i < 16; i++) {
+    //   array[i] = [];
+    // }
+
+    // debugger;
+
 
     collection28
       .then((querySnapshot) => {
+
+        // debugger;
+
 
         querySnapshot.forEach((twentyEight) => {
             // doc.data() is never undefined for query doc snapshots
@@ -78,21 +87,30 @@ import { onMount } from 'svelte';
             // data[twentyEight.id] = twentyEight.data()
             
             if (twentyEight.data().period16) {
-              array[twentyEight.data().period16] = twentyEight.data();
+
+              if ( !array[twentyEight.data().period16] ) {
+                array[twentyEight.data().period16] = [];
+              }
+
+              array[twentyEight.data().period16].push( twentyEight.data() );
             }
+
         });
+
+            for (let i = 0; i < 16; i++) {
+              if ( !array[i] ) {
+                array[i] = [];
+              }
+            }
+
+
+        // debugger;
 
         // console.log("data", data);
         // console.log(typeof data)
     });
-    debugger;
-    for (let i = 0; i < 16; i++) {
-      let elCard = document.createElement('Card');
-      let textNodeCardTitle = document.createTextNode('CardTitle');
-      elCard.appendChild(textNodeCardTitle);
 
-      document.getElementById(`sectionPeriod16_${i + 1}`).appendChild(elCard);
-    }
+
   });
 
 
@@ -102,12 +120,33 @@ import { onMount } from 'svelte';
 	<title>About</title>
 </svelte:head>
 
-{#each Array(16) as _, index}
-  <!-- <Day dateTime={firstDayDateTime + index + (7 * weekIndex)} /> -->							
-  <section id={"sectionPeriod16_" + (index + 1)} class="periodSection">
-    Period {index + 1}
-  </section>
-{/each}
+{#if array.length > 0}
+
+  {#each Array(16) as _, index}
+
+    <section id={"sectionPeriod16_" + (index + 1)} class="periodSection">
+      Period {index + 1}
+
+      <!-- { array.toString() } -->
+      <!-- { array[index].toString() } -->
+
+      {#each array[index] as twen}
+        <!-- works -->
+        <!-- { array[index].toString() } -->
+        
+        <!-- <TwenCard firestore={firestore} key={twen.id} /> -->
+
+      {/each}
+
+      <!-- <Day dateTime={firstDayDateTime + index + (7 * weekIndex)} /> -->							
+
+    </section>
+
+  {/each}
+
+{/if}
+
+
 
 <!-- <div class="content">
   <Card style="max-width:350px;">
