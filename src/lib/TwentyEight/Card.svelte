@@ -182,12 +182,28 @@
 
   <CardTitle>
     <!-- <Checkbox change={onClick} checked={data.days[DateTime.now().toISODate()].isCompleted}></Checkbox> -->
-    {#if data.days[DateTime.now().toISODate()]}
-    <input on:click={onClick} type="checkbox" checked={data.days[DateTime.now().toISODate()].isCompleted} />
+    
+    <table>
+      <tr>
+        <td>
+          {#if data.days[DateTime.now().toISODate()]}
 
-    {/if}
-    &nbsp;
-    { twenData.name }
+          <input on:click={onClick} type="checkbox" checked={data.days[DateTime.now().toISODate()].isCompleted} />
+    
+    
+        {/if}
+        </td>
+        <td>
+
+          { twenData.name }
+        </td>
+        
+      </tr>
+    </table>
+
+
+
+
     <!-- <button on:click={onClick}>test</button> -->
   </CardTitle>
   <!-- <CardSubtitle>1,000 miles of wonder</CardSubtitle> -->
@@ -262,4 +278,8 @@ input[type="checkbox"]{
     /* justify-content: ; */
 
 	}
+
+  td {
+    padding: 10px;
+  }
 </style>
