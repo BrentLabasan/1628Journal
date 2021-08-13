@@ -2,7 +2,16 @@
 
 <script>
 	import Week from './Week.svelte';
-	import { DateTime } from 'luxon';
+  import { DateTime } from 'luxon';
+  import {
+    Card,
+    CardTitle,
+    CardSubtitle,
+    CardActions,
+    Button,
+    Icon,
+    Divider,
+    MaterialApp } from 'svelte-materialify';
   import {openDialog, closeDialog} from './sharedCommands';
 
   import { twenIdToActUpon } from './stores.js';
@@ -25,11 +34,31 @@
     console.log("twenData", twenData);
 </script>
 
-<section>
+
 	<!-- {DateTime.now().toISODate()} -->
 
-  { twenData.name }
-</section>
+
+<Card style="max-width:350px;">
+  <img src="//picsum.photos/350" alt="background" />
+  <CardTitle>{ twenData.name }</CardTitle>
+  <!-- <CardSubtitle>1,000 miles of wonder</CardSubtitle> -->
+  <!-- <CardActions>
+    <Button text>Button</Button>
+    <Button text fab size="small" class="ml-auto" on:click={toggle}>
+      <Icon path={mdiChevronDown} rotate={active ? 180 : 0} />
+    </Button>
+  </CardActions> -->
+  <!-- {#if active}
+    <div transition:slide>
+      <Divider />
+      <div class="pl-4 pr-4 pt-2 pb-2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita autem,
+        asperiores dolores, doloremque ea atque suscipit dolore, ut adipisci amet
+        possimus dicta at voluptas consequatur!
+      </div>
+    </div>
+  {/if} -->
+</Card>
 
 <style>
 

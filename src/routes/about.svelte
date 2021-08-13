@@ -137,6 +137,7 @@ debugger;
         Period {index + 1} { DateTime.fromObject(converter(90 * index)).toFormat('HH:mm') } - { DateTime.fromObject(converter(90 * (index + 1))).toFormat('HH:mm') }
       </h2>
 
+      <br/>
       <!-- { array.toString() } -->
       <!-- { array[index].toString() } -->
 
