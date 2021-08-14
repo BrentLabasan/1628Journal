@@ -185,4 +185,10 @@ function converter(x) {
     border: 1px solid black;
     padding: 10px;
   }
+
+
+/* not working */
+  .s-card {
+    float: left;
+  }
 </style>
