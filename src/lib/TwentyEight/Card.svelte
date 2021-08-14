@@ -188,62 +188,70 @@
   
   {#if data}
 
-<Card style="max-width:350px;">
+<div class="containerCard">
+  <Card>
 
-  <!-- <img src="//picsum.photos/350" alt="background" /> -->
-
-
-  <CardTitle>
-    <!-- <Checkbox change={onClick} checked={data.days[DateTime.now().toISODate()].isCompleted}></Checkbox> -->
-    
-    <table>
-      <tr>
-        <td>
-          {#if data.days[DateTime.now().toISODate()]}
-
-          <input on:click={onClick} type="checkbox" checked={data.days[DateTime.now().toISODate()].isCompleted} />
-    
-    
-        {/if}
-        </td>
-        <td>
-
-          { twenData.name }
-        </td>
-        
-      </tr>
-    </table>
-
-
-
-
-    <!-- <button on:click={onClick}>test</button> -->
-  </CardTitle>
-  <CardSubtitle>
-    Period16
-  <input type="number" min="1" max="16" value={data.period16} on:change={change} />
-  </CardSubtitle>
-  <!-- <CardActions>
-    <Button text>Button</Button>
-    <Button text fab size="small" class="ml-auto" on:click={toggle}>
-      <Icon path={mdiChevronDown} rotate={active ? 180 : 0} />
-    </Button>
-  </CardActions> -->
-  <!-- {#if active}
-    <div transition:slide>
-      <Divider />
-      <div class="pl-4 pr-4 pt-2 pb-2">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita autem,
-        asperiores dolores, doloremque ea atque suscipit dolore, ut adipisci amet
-        possimus dicta at voluptas consequatur!
+    <!-- <img src="//picsum.photos/350" alt="background" /> -->
+  
+  
+    <CardTitle>
+      <!-- <Checkbox change={onClick} checked={data.days[DateTime.now().toISODate()].isCompleted}></Checkbox> -->
+      
+      <table>
+        <tr>
+          <td>
+            {#if data.days[DateTime.now().toISODate()]}
+  
+            <input on:click={onClick} type="checkbox" checked={data.days[DateTime.now().toISODate()].isCompleted} />
+      
+      
+          {/if}
+          </td>
+          <td>
+  
+            { twenData.name }
+          </td>
+          
+        </tr>
+      </table>
+  
+  
+  
+  
+      <!-- <button on:click={onClick}>test</button> -->
+    </CardTitle>
+    <CardSubtitle>
+      Period16
+    <input type="number" min="1" max="16" value={data.period16} on:change={change} />
+    </CardSubtitle>
+    <!-- <CardActions>
+      <Button text>Button</Button>
+      <Button text fab size="small" class="ml-auto" on:click={toggle}>
+        <Icon path={mdiChevronDown} rotate={active ? 180 : 0} />
+      </Button>
+    </CardActions> -->
+    <!-- {#if active}
+      <div transition:slide>
+        <Divider />
+        <div class="pl-4 pr-4 pt-2 pb-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita autem,
+          asperiores dolores, doloremque ea atque suscipit dolore, ut adipisci amet
+          possimus dicta at voluptas consequatur!
+        </div>
       </div>
-    </div>
-  {/if} -->
-</Card>
+    {/if} -->
+  </Card>
+</div>
 
 {/if}
 
 <style>
+  .containerCard {
+    /* border: 1px solid black; */
+    width: 350px;
+    float: left;
+    margin: 0 20px 20px 0;
+  }
 
 CardTitle {
   cursor: pointer;
@@ -302,6 +310,6 @@ input[type="checkbox"]{
   input {
     border: 1px solid black;
     padding: 0 0 0 5px;
-    width: 30px;
+    /* width: 30px; */
   }
 </style>
