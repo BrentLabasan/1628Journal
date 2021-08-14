@@ -63,7 +63,7 @@
     var snd = new Audio(confirm); // buffers automatically when created
     snd.play();
     // mark in Firebase as completed
-    newObject.days[blah].DateTimeCompleted = DateTime.now().toISO();
+    newObject.days[blah].dateTimeCompleted = DateTime.now().toISO();
     console.log("Day is pending to be written as completed.");
   } else {
     newObject.days[blah].DateTimeCompleted = null;
