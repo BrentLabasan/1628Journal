@@ -37,6 +37,19 @@
 
     console.log("twenData", twenData);
 
+    function change(e) {
+      // alert();
+
+      const newObject = Object.assign({}, data )
+      newObject.period16 = e.target.value;
+      
+      docRef.set(newObject).then(() => {
+        console.log("Habit's Period16 successfully changed.");
+
+      });
+
+    }
+
     function onClick() {
   // alert('Day onClick()')
   debugger;
@@ -206,7 +219,10 @@
 
     <!-- <button on:click={onClick}>test</button> -->
   </CardTitle>
-  <!-- <CardSubtitle>1,000 miles of wonder</CardSubtitle> -->
+  <CardSubtitle>
+    Period16
+  <input type="number" min="1" max="16" value={data.period16} on:change={change} />
+  </CardSubtitle>
   <!-- <CardActions>
     <Button text>Button</Button>
     <Button text fab size="small" class="ml-auto" on:click={toggle}>
@@ -281,5 +297,11 @@ input[type="checkbox"]{
 
   td {
     padding: 10px;
+  }
+  
+  input {
+    border: 1px solid black;
+    padding: 0 0 0 5px;
+    width: 30px;
   }
 </style>
