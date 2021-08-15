@@ -120,7 +120,8 @@
                       startDate: DateTime.now().toISODate(), // todo might change
                       days: obj,
                       name: doc.data().name,
-                      tags: doc.data().tags
+                      tags: doc.data().tags,
+                      period16: doc.data().period16
                     })
                     .then((docRef) => {
                       // console.log('Document written with ID: ', docRef.id);
