@@ -228,6 +228,7 @@ function onClick() {
   }
 
   #dayContainer {
+    box-sizing: content-box;
     display: inline-block;
 
     border-top: 1px dashed orangered;

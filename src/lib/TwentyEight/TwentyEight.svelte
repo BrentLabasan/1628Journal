@@ -62,6 +62,8 @@
 	}
 
 	.twentyEight_name {
+    box-sizing: content-box;
+    
 		display: inline-block;
     border-top: 1px solid black;
     border-left: 1px solid black;
