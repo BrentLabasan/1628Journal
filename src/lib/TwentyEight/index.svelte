@@ -259,7 +259,7 @@ function filterDataByTag(data, tag) {
 
   // let twenIdToActUpon = null;
 
-  const tagsDefault = ['meta', 'paper planner', 'Alaska Airlines', 'stretches', 'Fabricator Studio', 'daily reading', 'relationships', 'test']
+  const tagsDefault = ['meta', 'paper planner', 'Alaska Airlines', 'stretches', 'Fabricator', s'Fabricator Studio', 'daily reading', 'relationships', 'test']
 
   let urlTags = null, arrayTags = null;
   if (browser) { // https://kit.svelte.dev/faq
