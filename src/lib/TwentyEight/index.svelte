@@ -90,6 +90,16 @@
     });
   }
 
+  function deleteTwen() {
+    const thing = firestore.collection("twentyeights").doc(twenIdToActUpon_value);
+
+    thing.delete().then(() => {
+      console.log(`Twen id ${twenIdToActUpon_value} successfully deleted!`);
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+});
+  }
+  
   function archiveAndCreateNewTwen() {
     // alert("archiveAndCreateNewTwen " + twenIdToActUpon_value);
     
@@ -286,6 +296,9 @@ function filterDataByTag(data, tag) {
       <button on:click={closeDialog}>X</button>
       <br/><br/>
       <button on:click={archiveAndCreateNewTwen}>archiveAndCreateNewTwen() </button>
+      <br/>
+      <br/>
+      <button on:click={deleteTwen}>deleteTwen() </button>
 
       <br/>
       <br/>
