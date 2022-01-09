@@ -35,7 +35,7 @@
 			}	
 		}
 
-    console.log(`countDaysCompleted ${countDaysCompleted} rangeStart ${rangeStart} rangeEnd ${rangeEnd}`);
+    // console.log(`countDaysCompleted ${countDaysCompleted} rangeStart ${rangeStart} rangeEnd ${rangeEnd}`);
     
     // "reset all Week's canvases lines to be nothings"
     for (i = 0; i < 7; i++) {
@@ -59,7 +59,7 @@
       const target = document.getElementById(`forLine-${data.id}-${weekIndex}-${rangeStart}`)
       const rc2 = rough.canvas(target);
       
-      console.log(`4 or more! rangeStart ${rangeStart} rangeEnd ${rangeEnd}`);
+    //   console.log(`4 or more! rangeStart ${rangeStart} rangeEnd ${rangeEnd}`);
 
       rc2.line(0, 0, 85 * (rangeEnd - rangeStart), 0,  {strokeWidth: 7, roughness: 0});
     }

@@ -1,0 +1,5 @@
+TO RUN SERVER
+npm run dev -- --open --host
+
+TO PUSH CHANGES TO NETLIFY
+Do I need to run npm run build?

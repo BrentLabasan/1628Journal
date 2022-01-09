@@ -9,6 +9,18 @@
 
   import { twenIdToActUpon } from './stores.js';
 
+
+  import { onMount } from 'svelte';
+
+
+
+ 
+
+
+// var firebase2 = require('firebase');
+// var firebaseui = require('firebaseui');
+
+
   let twenIdToActUpon_value;
   twenIdToActUpon.subscribe(value => {
 		twenIdToActUpon_value = value;
@@ -249,13 +261,7 @@ function filterDataByTag(data, tag) {
   return newObject;
 }
 
-  // onMount(async () => {
 
-  //   const dia = document.createElement("vaadin-dialog");
-  //   document.querySelector('dialogHolder').appendChild(dia);
-  //   dia.setAttribute('opened');
-
-  // });
 
   // let twenIdToActUpon = null;
 
@@ -266,7 +272,7 @@ function filterDataByTag(data, tag) {
 	  var url_string = window.location.href
     var url = new URL(url_string);
     urlTags = url.searchParams.get("tags");
-    console.log(urlTags);
+    // console.log(urlTags);
     if (urlTags) {
       arrayTags = urlTags.split(',')
     }
