@@ -94,15 +94,12 @@
     // alert("archiveAndCreateNewTwen " + twenIdToActUpon_value);
     
     // - get data of 28 to archive
-
     var docRef = firestore.collection("twentyeights").doc(twenIdToActUpon_value);
 
     docRef.get().then((doc) => {
         if (doc.exists) {
             console.log("28 data:", doc.data());
-
             // - put it in archive > habitId > 28id
-
             firestore.collection("archive").doc(doc.data().habitId).set(
               {
                 [doc.data().id]: doc.data()
@@ -110,11 +107,7 @@
             )
             .then(() => {
                 console.log("SUCCESSFUL: put it in archive > habitId > 28id");
-
-
-
                  // - make a new 28 starting at the current date
-
                   let obj = {};
                   
                   // DateTime.now().toISODate()
@@ -153,19 +146,10 @@
                     .catch((error) => {
                       console.error('Error adding document: ', error);
                     });
-
-
-
-
-
-
-
-
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });
-
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
